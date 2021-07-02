@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: reachy-tictactoe
+Version: 1.0.0
+Summary: TicTacToe playground for Reachy robot
+Home-page: https://github.com/pollen-robotics/reachy_ticactoe
+Author: Pollen-Robotics
+Author-email: contact@pollen-robotics.com
+License: UNKNOWN
+Description: # Tic-Tac-Toe playground for Reachy 2019
+        
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
