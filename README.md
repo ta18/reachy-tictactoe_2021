@@ -24,11 +24,11 @@ Les informations de cette capsule sont tirées des liens suivants :
 
 
 ## Qu'est-ce que le jeu du Tic-tac-toe ❓ 
+![tictactoe](img/tictactoe.png)   
 Pollen Robotics, l'entreprise créatrice de Reachy, a crée un programme capable de souligner l'interactivité de Reachy à la fois avec les humains et lors de la saisie et du déplacement d'objets : le Tic-tac-toe. 
 Le tic-tac-toe, aussi appelé « morpion » (par analogie au jeu de morpion) et « oxo » en Belgique, est un jeu de réflexion se pratiquant à deux joueurs au tour par tour dont le but est de créer le premier un alignement. Le jeu se joue généralement avec papier et crayon. 
 Deux joueurs s'affrontent. Ils doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : O ou X. Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale.
-
-![tictactoe](img/tictactoe.png)   
+  
 
 ## Travail effectué 
   
