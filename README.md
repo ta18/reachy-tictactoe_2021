@@ -84,7 +84,7 @@ Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... et
 
 3. Il te faut fabriquer ou acheter des cubes de 51 x 51mm et des cylindre de 50mm de diametre par 50mm de hauteur. Tu peux trouver ici des STL pour l'impression 3D de ces pièces :  
 [Lien STL cylindre](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)  
-[Lien STL cube](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)
+[Lien STL cube](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)   
 Il te faudra 5 pièces de chaque. 
 
 ![dimension cylinder](img/dim_cylinder.png) ![dimension cube](img/dim_cube.png)
