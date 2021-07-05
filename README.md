@@ -79,7 +79,7 @@ Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... et
 1. Sur ta planche, il te faut placer le chaterton comme cela afin de créer ta grille :
 ![playground dimension](img/playground_grid.png)
 
-2. Place la planche à 175 mm du pied du Reachy. Je te conseille de bien fixer la planche afin que le robot de la déplace pas en jouant. 
+2. Place la planche à 175 mm du pied du Reachy. Je te conseille de bien fixer la planche afin que le robot ne la déplace pas en jouant. 
 ![placement planche](img/playground_distance.png)
 
 3. Il te faut fabriquer ou acheter des cubes de 51 x 51mm et des cylindre de 50mm de diametre par 50mm de hauteur. Tu peux trouver ici des STL pour l'impression 3D de ces pièces :  
