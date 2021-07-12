@@ -2,19 +2,32 @@ import numpy as np
 import cv2 as cv
 import logging
 import os
+import matplotlib.pyplot as plt 
 
-import cv2 as cv 
 from PIL import Image
+from PIL import ImageDraw
 
 #TC from edgetpu.utils import dataset_utils
 from utils import dataset
 #TC from edgetpu.classification.engine import ClassificationEngine
-from adapters import classify, common
-from utils.edgetpu import make_interpreter
-from utils.dataset import read_label_file
+#TC from adapters import classify, common
+#TC from utils.edgetpu import make_interpreter
+#TC from utils.dataset import read_label_file
+
+from pycoral.adapters import classify, common, detect
+#from pycoral.utils.edgetpu import make_interpreter
+#from pycoral.utils.dataset import read_label_file
+
+from tflite_runtime.interpreter import Interpreter
+from tflite_runtime.interpreter import load_delegate
+
+from pycoral.utils.dataset import read_label_file
+from pycoral.utils.edgetpu import make_interpreter
 
 from .utils import piece2id
 from .detect_board import get_board_cases
+
+import time
 
 
 logger = logging.getLogger('reachy.tictactoe')
@@ -31,27 +44,17 @@ model_path = os.path.join(dir_path, 'models')
 #path_model_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.tflite'
 #path_label_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.txt'
 
-path_model_box = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-boxes.tflite'
-path_label_box = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-boxes.txt'
-path_model_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.tflite'
-path_label_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.txt'
+path_model = '/home/reachy/Desktop/tflite2/output_tflite_graph_edgetpu.tflite'
+path_label = '/home/reachy/Desktop/tflite2/label.txt'
+
+labels = read_label_file(path_label) if path_label else {}
+interpreter = make_interpreter(path_model)
+interpreter.allocate_tensors()
 
 
 #TC valid_classifier = ClassificationEngine(os.path.join(model_path, 'ttt-valid-board.tflite'))
 #TC valid_labels = dataset_utils.read_label_file(os.path.join(model_path, 'ttt-valid-board.txt'))
 
-interpreterBox = make_interpreter(os.path.join(model_path, 'ttt-boxes.tflite'))
-interpreterBox.allocate_tensors()
-labelsBox = read_label_file(os.path.join(model_path, 'ttt-boxes.txt'))
-sizeBox = common.input_size(interpreterBox)
-
-interpreterBoard = make_interpreter(os.path.join(model_path, 'ttt-valid-board.tflite'))
-interpreterBoard.allocate_tensors()
-labelsBoard = read_label_file(os.path.join(model_path, 'ttt-valid-board.txt'))
-sizeBoard = common.input_size(interpreterBoard)
-
-sizeInterpreterBoard = common.input_size(interpreterBoard)
-sizeInterpreterBox = common.input_size(interpreterBox)
 
 board_cases = np.array((
     ((81, 166, 260, 340), #Coordinates first board cases (top-left corner) (Xbl, Xbr, Ytr, Ybr)
@@ -74,57 +77,168 @@ board_rect = np.array((
 
 shape = (224, 224)
 
-def get_board_configuration(img):
+def draw_objects(draw, objs, labels):
+#Draws the bounding box and label for each object.
+  for obj in objs:
+    bbox = obj.bbox
+    draw.rectangle([(bbox.xmin, bbox.ymin), (bbox.xmax, bbox.ymax)],
+                   outline='red')
+    draw.text((bbox.xmin + 10, bbox.ymin + 10),
+              '%s\n%.2f' % (labels.get(obj.id, obj.id), obj.score),
+              fill='red')
+
+def get_board_configuration(image):
+    nb = 0
     board = np.zeros((3, 3), dtype=np.uint8)
+    #boardEmpty = np.zeros((3, 3), dtype=np.uint8)
+    
+    #size for crop the image taking by the reachy's camera 
+    top = 270
+    left = 40
+    height = 320
+    width = 320
 
     # try:
     #     custom_board_cases = get_board_cases(img)
     # except Exception as e:
     #     logger.warning('Board detection failed', extra={'error': e})
     #     custom_board_cases = board_cases
-    custom_board_cases = board_cases
+    #custom_board_cases = board_cases #grille personnalisé avec notebook (coordonnées)
     sanity_check = True
 
-    for row in range(3):
-        for col in range(3):
-            lx, rx, ly, ry = custom_board_cases[row, col]
-            #img = img.convert('RGB')
-            #img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-            #img = img.resize(shape, Image.NEAREST)
-            #TC piece, score = identify_box(img[ly:ry, lx:rx])
-            piece, score = identify_box(img[ly:ry, lx:rx])
+    #for row in range(3):
+    #    for col in range(3):
+    #        lx, rx, ly, ry = custom_board_cases[row, col]
+    #        #img = img.convert('RGB')
+    #        #img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+    #       #img = img.resize(shape, Image.NEAREST)
+    #        #TC piece, score = identify_box(img[ly:ry, lx:rx])
+    #        piece, score = identify_box(img[ly:ry, lx:rx])
             #if score < 0.9:
             #    sanity_check = False
             #    return [], sanity_check
             # We invert the board to present it from the Human point of view
-            if score < 0.9:
-                piece = 0
-            board[2 - row, 2 - col] = piece
-    return board, sanity_check
+    #        if score < 0.9: #tolerance à changer 
+    #            piece = 0
+    #        board[2 - row, 2 - col] = piece
+
+    path_model = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tfliteV2/output_tflite_graph_edgetpu.tflite'
+    path_label = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tfliteV2/label.txt'
+
+    #labels = read_label_file(path_label) if path_label else {}
+    interpreter = make_interpreter(path_model)
+    interpreter.allocate_tensors()
+
+    image = Image.fromarray(image)
+    box=(left, top, left+width, top+height)
+    image = image.crop(box) 
+    image = image.resize((300,300), Image.ANTIALIAS)
+    _, scale = common.set_resized_input(interpreter, image.size, lambda size: image.resize(size, Image.ANTIALIAS))
+
+    args_threshold = 0.3
+
+    #for _ in range(args_count):
+    start = time.perf_counter()
+    interpreter.invoke()
+    inference_time = time.perf_counter() - start
+
+    objs = detect.get_objects(interpreter, args_threshold, scale)
+    #print('%.2f ms' % (inference_time * 1000))
+
+    if not objs:
+        logger.info('No objects detected')
+
+    for obj in objs:
+        logger.info(f'id : {obj.id}')
+
+    image = image.convert('RGB')
+    draw_objects(ImageDraw.Draw(image), objs, labels)
+    image.save(f'/home/reachy/dev/reachy-tictactoe/images/image{nb}.png')
+    nb = nb+1
+
+    ok = False 
+    logger.info(f'Taille objs = {len(objs)}')
+    if (len(objs)==9): #la détection doit détecter 9 objets dans l'image (1 par cases) si ce n'est pas le cas il faut recommencer la détection 
+        ok = True
+        Ly = [e.bbox.ymin for e in objs]  
+        index_y_all = np.argsort(Ly)[::-1]
+        objs_sorted_y = np.array(objs,dtype=object)[index_y_all]
+        #print(objs_sorted_y)
+
+        for i in range(0,7,3):
+            Ly_row = objs_sorted_y[i:i+3]
+            Lx = [e[2][0] for e in Ly_row] # liste des xmin des 3 obj
+            index_x = np.argsort(Lx)[::-1] # tri décroissant
+            np.array(Lx)[index_x]
+            Ly_row = Ly_row[index_x]   # tri sur X pemièer ligne
+
+            board[int(i/3)] = Ly_row[:,:1].flatten()
+        board = board[::-1, ::-1]
+        board = board.flatten()
+        logger.info(f'board : {board}')
+        logger.info(f'taille board = {np.shape(board)}')
+        
+        #if board.any():
+        #    ok = False 
+        # if np.array_equal(board,boardEmpty)==False: #board is not equal to a array of zero (not empty)
+        #     logger.info('JE PASSE DANS LE FALSE EQUAL => PAS EGAUX LES DEUX MATRICE ')
+        #     ok = False 
+        # else : 
+        #     ok = True
+    else : 
+        ok = False 
+        #board[::-1, ::-1]
+
+    return ok, board, sanity_check
 
 
-def identify_box(box_img):
+#TC def identify_box(box_img):
 
     #TC res = boxes_classifier.classify_with_image(img_as_pil(box_img), top_k=1)
     #box_img = cv.cvtColor(box_img, cv.COLOR_BGR2RGB)
     #box_img = cv.resize(box_img , (224,224))
-    pil_img = Image.fromarray(box_img).convert('RGB').resize(sizeInterpreterBox, Image.ANTIALIAS)
+    #pil_img = Image.fromarray(box_img).convert('RGB').resize(sizeInterpreterBox, Image.ANTIALIAS)
     #common.set_input(interpreterBox, img_as_pil(box_img))
-    common.set_input(interpreterBox, pil_img)
-    interpreterBox.invoke()
-    result = classify.get_classes(interpreterBox, top_k=1, score_threshold=0.1)
-    label = labelsBox.get(result[0].id)
-    logger.info(f'label : {label}')        
-    assert result
+    #common.set_input(interpreterBox, pil_img)
+    #interpreterBox.invoke()
+    #result = classify.get_classes(interpreterBox, top_k=1, score_threshold=0.1)
+    #label = labelsBox.get(result[0].id)
 
-    label, score = result[0]
+    #box_image = Image.fromarray(box_img)
+    #_, scale = common.set_resized_input(interpreter, box_img.size, lambda size: image.resize(size, Image.ANTIALIAS))
 
-    return label, score
+    #args_count = 5
+    #args_threshold = 0.5
+
+    #for _ in range(args_count):
+    #   start = time.perf_counter()
+    #    interpreter.invoke()
+    #    inference_time = time.perf_counter() - start
+    #    objs = detect.get_objects(interpreter, args_threshold, scale)
+    #    print('%.2f ms' % (inference_time * 1000))
+
+    #if not objs:
+    #    print('No objects detected')
+
+    #for obj in objs:
+        #obj = objs[0]
+    #    print(labels.get(obj.id, obj.id))
+    #    print('  id:    ', obj.id)
+    #    print('  score: ', obj.score)
+    #    print('  bbox:  ', obj.bbox)
+
+
+    #logger.info(f'label : {label}')        
+    #assert result
+
+    #label, score = result[0]
+
+    #return label, score
 
 
 def is_board_valid(img):
-    lx, rx, ly, ry = board_rect
-    #TC board_img = img[ly:ry, lx:rx]
+    #TC lx, rx, ly, ry = board_rect
+    #board_img = img[ly:ry, lx:rx]
     #board_img = img[ly:ry, lx:rx]
     #img = img.convert('RGB')
     #board_img = cv.cvtColor(board_img, cv.COLOR_BGR2RGB)
@@ -149,6 +263,8 @@ def is_board_valid(img):
     })
 
     return label == 'valid' and score > 0.65
+
+
 
 
 def img_as_pil(img):

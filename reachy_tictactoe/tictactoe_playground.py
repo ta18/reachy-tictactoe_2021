@@ -34,7 +34,7 @@ class TictactoePlayground(object):
     def setup(self):
         logger.info('Setup the playground')
 
-        #for antenna in self.reachy.head.motors: 
+        #TC for antenna in self.reachy.head.motors: 
         #    antenna.compliant = False
         #    antenna.goto(
         #        goal_position=0, duration=2,
@@ -105,8 +105,7 @@ class TictactoePlayground(object):
 
         self.reachy.head.look_at(x=1, y=0, z=0, duration=1.5) 
         #TC self.reachy.head.look_at(0.5, 0, z=-0.6, duration=1)
-        self.reachy.head.look_at(x=0.5, y=0, z=-0.6, duration=1.5)  
-        self.reachy.head.l_antenna.goal_position = 50
+        self.reachy.head.look_at(x=0.75, y=0, z=-0.6, duration=1) 
 
         time.sleep(3)
 
@@ -131,18 +130,18 @@ class TictactoePlayground(object):
             #},
         )
 
-        if not is_board_valid(img):
-            logger.info('BOARD PAS VALIDE')
-            self.reachy.head.compliant = False
-            time.sleep(0.1)
-            self.reachy.head.look_at(1, 0, 0, duration=0.75)
-            return
+        #if not is_board_valid(img):
+        #    logger.info('BOARD PAS VALIDE')
+        #    self.reachy.head.compliant = False
+        #    time.sleep(0.1)
+        #    self.reachy.head.look_at(1, 0, 0, duration=0.75)
+        #    return
 
         tic = time.time()
         
         #TC success, img = self.reachy.head.right_camera.read() 
         img = self.reachy.right_camera.wait_for_new_frame()
-        board, _ = get_board_configuration(img)
+        ok, board, _ = get_board_configuration(img)
 
         # TEMP
         logger.info(
@@ -158,7 +157,7 @@ class TictactoePlayground(object):
         time.sleep(0.1)
         self.reachy.head.look_at(1, 0, 0, duration=0.75)
 
-        return board.flatten()
+        return ok, board
 
     def incoherent_board_detected(self, board):
         nb_cubes = len(np.where(board == piece2id['cube'])[0])
@@ -257,6 +256,7 @@ class TictactoePlayground(object):
 
     def play(self, action, actual_board):
         board = actual_board.copy()
+        logger.info('JE PASSE DANS PLAY')
 
         self.play_pawn(
             grab_index=self.pawn_played + 1,
@@ -294,6 +294,7 @@ class TictactoePlayground(object):
             #    duration=1,
             #    wait=True,
             #)
+            logger.info('JE PASSE LA C BIZARRE')
             path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_3.npz'
             self.goto_position(path)
 
@@ -304,15 +305,18 @@ class TictactoePlayground(object):
         #    duration=1,
         #    wait=True,
         #)
-        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/put_{grab_index}_smooth_10_kp.npz'
+        logger.info('JE PASSE DANS PLAY_PAWN')
+        self.reachy.r_arm.r_gripper.goal_position = -10
+        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_{grab_index}.npz'
         self.goto_position(path)
         #TC self.reachy.right_arm.hand.close() 
-        self.reachy.r_arm.r_gripper.goal_position = 30
+        time.sleep(1)
+        self.reachy.r_arm.r_gripper.goal_position = 10
 
         #TC self.reachy.head.left_antenna.goto(45, 1, interpolation_mode='minjerk')
         self.reachy.head.l_antenna.goal_position = 45
         #TC self.reachy.head.right_antenna.goto(-45, 1, interpolation_mode='minjerk')
-        self.reachy.head.r_antenna.gotogoal_position = -45
+        self.reachy.head.r_antenna.goal_position = -45
 
         if grab_index >= 4:
             #TC self.reachy.goto({
@@ -360,7 +364,7 @@ class TictactoePlayground(object):
         self.trajectoryPlayer(path)
 
         #TC self.reachy.right_arm.hand.open()
-        self.reachy.r_arm.r_gripper.goal_position = 0
+        self.reachy.r_arm.r_gripper.goal_position = -10
 
         # Go back to rest position
         #TC self.goto_position(
@@ -392,7 +396,7 @@ class TictactoePlayground(object):
         #    duration=2,
         #    wait=True,
         #)
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/back_to_rest.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/back_rest.npz'
         self.goto_position(path)
 
         self.goto_rest_position()
@@ -478,13 +482,19 @@ class TictactoePlayground(object):
     #    )
 
     def goto_position(self, path): 
+
         self.reachy.turn_on('r_arm')
         move = np.load(path)
         move.allow_pickle=1
-    
         listMoves = move['move'].tolist()
-        listTraj = { eval(key):float(val) for key,val in listMoves.items() }
-        logger.info(listTraj)
+        logger.info('JE PASSE DANS GOTO')
+        listTraj = {}
+        #listTraj = { eval('self.'+key):float(val) for key,val in listMoves.items() }
+        for key,val in listMoves.items():
+            logger.info('self.'+key + '')
+            listTraj[eval('self.'+key)] = float(val)
+
+        logger.info('JE PASSE DANS GOTO')
     
         goto(
             goal_positions=listTraj, 
@@ -533,7 +543,7 @@ class TictactoePlayground(object):
                     {self.reachy.r_arm.r_shoulder_pitch: 50,
                     self.reachy.r_arm.r_shoulder_roll: -15,
                     self.reachy.r_arm.r_arm_yaw: 0,
-                    self.reachy.r_arm.r_elbow_pitch: -80,
+                    self.reachy.r_arm.r_elbow_pitch: -100,
                     self.reachy.r_arm.r_forearm_yaw: -15,
                     self.reachy.r_arm.r_wrist_pitch: -60,
                     self.reachy.r_arm.r_wrist_roll: 0},
@@ -600,7 +610,7 @@ class TictactoePlayground(object):
         start = time.time()
         while time.time() - start <= 30:
             #TC success, img = self.reachy.head.right_camera.read()
-            img = reachy.right_camera.wait_for_new_frame()
+            img = self.reachy.right_camera.wait_for_new_frame()
             if img != []:
                 return
         logger.warning('No image received for 30 sec, going to reboot.')

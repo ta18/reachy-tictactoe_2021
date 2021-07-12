@@ -48,8 +48,8 @@ def head_home(reachy, duration):
     #    'head.l_antenna': 0,
     #    'head.r_antenna': 0,
     #}, duration=duration, wait=True, interpolation_mode='minjerk')
-    self.reachy.head.l_antenna.goal_position = 0
-    self.reachy.head.r_antenna.goal_position = 0
+    reachy.head.l_antenna.goal_position = 0
+    reachy.head.r_antenna.goal_position = 0
 
 
 def sad(reachy):
@@ -71,8 +71,8 @@ def sad(reachy):
         #    'head.left_antenna': antenna_pos,#changer
         #    'head.right_antenna': -antenna_pos,
         #}, duration=1.5, wait=True, interpolation_mode='minjerk')
-        self.reachy.head.l_antenna.goal_position = antenna_pos
-        self.reachy.head.r_antenna.goal_position = -antenna_pos
+        reachy.head.l_antenna.goal_position = antenna_pos
+        reachy.head.r_antenna.goal_position = -antenna_pos
     logger.info('Ending behavior', extra={'behavior': 'sad'})
 
 
