@@ -133,5 +133,15 @@ Suivre les indications sur le notebook.
 
 ## Ré-entrainer un model 
 
+Pour le jeu du tictactoe, j'utilise un réseau entrainé qui effectuer de la détection d'objets (ici detection de cube et cylindre). 
+Le réseau est capable de détecter les formes cubique et cylindrique de petite et grande taille, et de couleurs différentes. Cependant, certaines couleurs qui se trouve plus près du blanc sont plus compliqué a détecter. En effet, la détection se fait grace à de la détection de contours : le réseau compare les pixels de couleurs. Donc si les pixels tire vers le blanc cela est difficile pour lui de faire la différence entre un pixel blanc et un pixel d'une couleur similaire. 
+Si vous souhaitez utiliser le réseau que j'ai entrainé, vous pouvez utiliser des pièces petites et grandes, mais je vous conseille tout de même de prendre des couleurs qui sont plus proche du bleu, du rouge ou du vert foncé. 
+De plus j'ai utiliser un playground blanc pour entrainer mon réseau, donc si vous utiliser un playground marron, noir ou d'une autre couleur vous deverez peut etre réentrainer le réseau. 
 
+La configuration que je conseille pour eviter de ré entrainer le réseau est la suivante : 
+- pièce de couleur bleu, rouge ou vert foncé 
+- playground blanc 
+- grille noir ou marron 
 
+Si vous souhaitez re entrainer le réseau il vous faudra suivre le tutoriel suivant : 
+[Retrain a SSH mobilnet model with Tensorflow 1 for EdgeTPU](https://github.com/ta18/tod_tf1)
