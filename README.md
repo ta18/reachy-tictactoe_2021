@@ -101,15 +101,16 @@ Il te faudra 5 pièces de chaque.
 
 Les commandes à connaitre : 
 * `sudo systemctl stop tictactoe_launcher.service` : stop le service tictactoe 
-* `sudo systemctl start tictactoe_launcher.service` : 
-* `sudo systemctl status tictactoe_launcher.service` : permet de voir 
+* `sudo systemctl start tictactoe_launcher.service` : start le service tictactoe / lance le jeu 
+* `sudo systemctl status tictactoe_launcher.service` : permet de voir l'etat du service, si il y a des erreurs ou non 
+* `sudo systemctl enable tictactoe_launcher.service` : 
 * `sudo systemctl disable tictactoe_launcher.service` : 
 
 ### Jouer avec Reachy 
 
 La démo se déroule de manière totalement autonome : 
-Tout d'abord, le robot ne commencera une partie qu'une fois le plateau terminé. C'est à vous de réinitialiser la position de l'échiquier et de remettre le pion à sa position de base.
-Position de base : 
+Le robot ne commencera une partie qu'une fois le plateau terminé. C'est à vous de réinitialiser la position de l'échiquier et de remettre les pions à leurs positions de base.
+Positions de base : 
 ![playground base](img/playground_base.png)
 
 Lorsqu'une partie est terminée, une nouvelle est directement redémarrée. Ainsi, à la fin d'une partie, nettoyez le plateau et une nouvelle partie commencera.
