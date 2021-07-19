@@ -1,7 +1,7 @@
 piece2id = {
     'cube': 1,
     'cylinder': 2,
-    'none': 0,
+    'empty': 0,
 }
 
 id2piece = {
@@ -11,5 +11,5 @@ id2piece = {
 piece2player = {
     'cube': 'human',
     'cylinder': 'robot',
-    'none': 'nobody',
+    'empty': 'nobody',
 }

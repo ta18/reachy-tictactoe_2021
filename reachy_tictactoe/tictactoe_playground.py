@@ -165,15 +165,16 @@ class TictactoePlayground(object):
 
         if abs(nb_cubes - nb_cylinders) <= 1:
             return False
+        else : 
+            logger.warning('Incoherent board detected', extra={
+            'current_board': board})
+            return True
 
-        logger.warning('Incoherent board detected', extra={
-            'current_board': board,
-        })
-
-        return True
 
     def cheating_detected(self, board, last_board, reachy_turn):
         # last is just after the robot played
+        logger.info(f'last board = {last_board}')
+        logger.info(f'current board = {board}')
         delta = board - last_board
 
         # Nothing changed
@@ -285,18 +286,22 @@ class TictactoePlayground(object):
             duration=0.85,
         )
 
+        self.reachy.r_arm.r_gripper.speed_limit = 60
+
+        logger.info(f'BOX_INDEX = {box_index}')
+
         # Goto base position
         self.goto_base_position() 
 
-        if grab_index >= 4: #bizarre
-            #TC self.goto_position(
-            #    moves['grab_3'],
-            #    duration=1,
-            #    wait=True,
-            #)
-            logger.info('JE PASSE LA C BIZARRE')
-            path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_3.npz'
-            self.goto_position(path)
+        # if grab_index >= 4: #bizarre
+        #     #TC self.goto_position(
+        #     #    moves['grab_3'],
+        #     #    duration=1,
+        #     #    wait=True,
+        #     #)
+        #     logger.info('JE PASSE LA C BIZARRE')
+        #     path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_3.npz'
+        #     self.goto_position(path)
 
         # Grab the pawn at grab_index
         
@@ -305,13 +310,16 @@ class TictactoePlayground(object):
         #    duration=1,
         #    wait=True,
         #)
+
         logger.info('JE PASSE DANS PLAY_PAWN')
-        self.reachy.r_arm.r_gripper.goal_position = -10
+        self.reachy.r_arm.r_gripper.goal_position = -40 #open the gripper 
         path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_{grab_index}.npz'
         self.goto_position(path)
+        time.sleep(2)
+        self.reachy.r_arm.r_gripper.compliant = False 
+        self.reachy.r_arm.r_gripper.goal_position = -5 #close the gripper to take the cylinder 
+        time.sleep(2)
         #TC self.reachy.right_arm.hand.close() 
-        time.sleep(1)
-        self.reachy.r_arm.r_gripper.goal_position = 10
 
         #TC self.reachy.head.left_antenna.goto(45, 1, interpolation_mode='minjerk')
         self.reachy.head.l_antenna.goal_position = 45
@@ -364,7 +372,7 @@ class TictactoePlayground(object):
         self.trajectoryPlayer(path)
 
         #TC self.reachy.right_arm.hand.open()
-        self.reachy.r_arm.r_gripper.goal_position = -10
+        self.reachy.r_arm.r_gripper.goal_position = -30
 
         # Go back to rest position
         #TC self.goto_position(
@@ -576,6 +584,7 @@ class TictactoePlayground(object):
         self.reachy.turn_on('r_arm')
         move = np.load(path)
         move.allow_pickle=1
+        logger.info(list(move.keys()))
 
         listMoves = move['move'].tolist()
         listTraj = [ val for key,val in listMoves.items()]
@@ -617,39 +626,28 @@ class TictactoePlayground(object):
         os.system('sudo reboot')
 
     def need_cooldown(self):
-        motor_temperature = np.array(
-        [
-            'r_shoulder_pitch',
-            'r_shoulder_roll',
-            'r_arm_yaw',
-            'r_elbow_pitch',
-            'r_forearm_yaw',
-            'r_wrist_pitch',
-            'r_wrist_roll',
-            'r_gripper',
-            'neck_disk_top', 
-            'neck_disk_middle', 
-            'neck_disk_bottom'
-        ],
-        [
-            #TC m.temperature for m in self.reachy.motors
-            self.reachy.r_arm.r_shoulder_pitch.temperature,
-            self.reachy.r_arm.r_shoulder_roll.temperature,
-            self.reachy.r_arm.r_arm_yaw.temperature,
-            self.reachy.r_arm.r_elbow_pitch.temperature,
-            self.reachy.r_arm.r_forearm_yaw.temperature,
-            self.reachy.r_arm.r_wrist_pitch.temperature,
-            self.reachy.r_arm.r_wrist_roll.temperature,
-            self.reachy.r_arm.r_gripper.temperature,
-            self.reachy.head.neck_disk_top.temperature, 
-            self.reachy.head.neck_disk_middle.temperature, 
-            self.reachy.head.neck_disk_bottom.temperature
-        ])
+        listNameJoints = [
+                'r_shoulder_pitch',
+                'r_shoulder_roll',
+                'r_arm_yaw',
+                'r_elbow_pitch',
+                'r_forearm_yaw',
+                'r_wrist_pitch',
+                'r_wrist_roll',
+                'r_gripper',
+                'neck_disk_top', 
+                'neck_disk_middle', 
+                'neck_disk_bottom'
+            ]
+        listObj = []
+        for joints in listNameJoints:
+            if 'neck' in joints : 
+                fullName = 'self.reachy.head.'+joints+'.temperature'
+            elif 'r_' in joints: 
+                fullName = 'self.reachy.r_arm.'+joints+'.temperature'
+            listObj.append(fullName)
 
-        temperatures = {}
-        #TC temperatures.update({m.name: m.temperature for m in self.reachy.motors})
-        #TC temperatures.update({d.alias: d.temperature for d in self.reachy.head.neck.disks})
-        temperatures = {key:float(val) for key,val in motor_temperature.T.tolist()}
+        temperatures = {key:eval(obj) for key,obj in zip(listNameJoints,listObj)}
 
         logger.info(
             'Checking Reachy motors temperature',
@@ -658,13 +656,17 @@ class TictactoePlayground(object):
             }
         )
         #TC return np.any(motor_temperature > 50) or np.any(orbita_temperature > 45)
-        return np.any(motor_temperature[1].astype(float) > 50) 
+        listMotor=[]
+        for key,obj in temperatures.items() : 
+            if obj > 45 : 
+                listMotor.append(key)
+        return listMotor 
 
     def wait_for_cooldown(self):
         self.goto_rest_position()
         self.reachy.head.look_at(0.5, 0, -0.65, duration=1.25)
         #TC self.reachy.head.compliant = True
-        self.reachy.turn_off('r_arm')
+        self.reachy.turn_off('reachy')
 
         while True:
             #TC motor_temperature = np.array([
@@ -677,37 +679,28 @@ class TictactoePlayground(object):
             #temperatures = {}
             #temperatures.update({m.name: m.temperature for m in self.reachy.motors})
             #temperatures.update({d.name: d.temperature for d in self.reachy.head.neck.disks})
-            motor_temperature = np.array(
-                [
-                    'r_shoulder_pitch',
-                    'r_shoulder_roll',
-                    'r_arm_yaw',
-                    'r_elbow_pitch',
-                    'r_forearm_yaw',
-                    'r_wrist_pitch',
-                    'r_wrist_roll',
-                    'r_gripper',
-                    'neck_disk_top', 
-                    'neck_disk_middle', 
-                    'neck_disk_bottom'
-                ],
-                [
-                    #TC m.temperature for m in self.reachy.motors
-                    self.reachy.r_arm.r_shoulder_pitch.temperature,
-                    self.reachy.r_arm.r_shoulder_roll.temperature,
-                    self.reachy.r_arm.r_arm_yaw.temperature,
-                    self.reachy.r_arm.r_elbow_pitch.temperature,
-                    self.reachy.r_arm.r_forearm_yaw.temperature,
-                    self.reachy.r_arm.r_wrist_pitch.temperature,
-                    self.reachy.r_arm.r_wrist_roll.temperature,
-                    self.reachy.r_arm.r_gripper.temperature,
-                    self.reachy.head.neck_disk_top.temperature, 
-                    self.reachy.head.neck_disk_middle.temperature, 
-                    self.reachy.head.neck_disk_bottom.temperature
-                ])
+            listNameJoints = [
+                'r_shoulder_pitch',
+                'r_shoulder_roll',
+                'r_arm_yaw',
+                'r_elbow_pitch',
+                'r_forearm_yaw',
+                'r_wrist_pitch',
+                'r_wrist_roll',
+                'r_gripper',
+                'neck_disk_top', 
+                'neck_disk_middle', 
+                'neck_disk_bottom'
+            ]
+            listObj = []
+            for joints in listNameJoints:
+                if 'neck' in joints : 
+                    fullName = 'self.reachy.head.'+joints+'.temperature'
+                elif 'r_' in joints: 
+                    fullName = 'self.reachy.r_arm.'+joints+'.temperature'
+                listObj.append(fullName)
 
-            temperatures = {}
-            temperatures = {key:float(val) for key,val in motor_temperature.T.tolist()}
+            temperatures = {key:eval(obj) for key,obj in zip(listNameJoints,listObj)}
 
             logger.warning(
                 'Motors cooling down...',
@@ -717,7 +710,17 @@ class TictactoePlayground(object):
             )
 
             #TC if np.all(motor_temperature < 45) and np.all(orbita_temperature < 40):
-            if np.all(motor_temperature[1].astype(float) < 40): 
+            listMotor=[]
+            for key,obj in temperatures.items() : 
+                if obj < 40 : 
+                    listMotor.append(key)
+            # if np.all(motor_temperature[1].astype(float) < 40): 
+            #     break
+            count = 0
+            for key,obj in temperatures.items() : 
+                if obj < 50 :
+                        count = count+1
+            if count == len(listNameJoints):
                 break
 
             time.sleep(30)

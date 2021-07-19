@@ -89,16 +89,17 @@ def run_game_loop(tictactoe_playground):
         # We reset the whole game
         if (tictactoe_playground.incoherent_board_detected(board) or
                  tictactoe_playground.cheating_detected(board, last_board, reachy_turn)):
-             # Check again to be sure
-             logger.info('LAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-             ok, double_check_board = tictactoe_playground.analyze_board()
-             if np.any(double_check_board != board):
+            # Check again to be sure
+            logger.info('/!\ LAAAAAAAAAAAAAAAAAAAAAAAAAAA QUELQUN TRICHE ')
+            ok, double_check_board = tictactoe_playground.analyze_board()
+            logger.info(f'recheck board : {double_check_board}')
+            if np.any(double_check_board != last_board): #the board checked it's differente that the last board (the good one)
+            # We're pretty sure somthing weird happened!
+                tictactoe_playground.shuffle_board()
+                break
+            else :
                  # False detection, we will check again next loop
                  continue
-
-             # We're pretty sure somthing weird happened!
-             tictactoe_playground.shuffle_board()
-             break
 
         # When it's the robot's turn to play
         # We decide which action to take and plays it
