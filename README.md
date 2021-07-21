@@ -11,7 +11,7 @@ The information in this file is taken from the following links :
 
 ## What is Tic-tac-toe game ❓ 
 ![tictactoe](img/tictactoe.png)   
-Pollen Robotics, the company that created Reachy, has created a program capable of underlining Reachy's interactivity both with humans and when grasping and moving objects: Tic-tac-toe.   
+Pollen Robotics, the company that created Reachy, has created a program capable of underlining Reachy's interactivity by grasping and moving objects: Tic-tac-toe.   
 Tic-tac-toe, also called "morpion" (by analogy with the game of tic-tac-toe) and "oxo" in Belgium, is a two-player turn-based puzzle game in which the goal is to create a line-up first. The game is usually played with paper and pencil.   
 Two players compete against each other. They must each take turns filling in a square on the grid with the symbol assigned to them: O or X. The winner is the one who manages to align three identical symbols, horizontally, vertically or diagonally.  
 
@@ -104,7 +104,7 @@ When the board is ready, the game starts. Reachy will point to the one who start
 Once you have played, Reachy will analyze the board by lowering his head, it takes him a little time to detect everything, but once this is good, he will take his piece and play in turn.   
 And so on until someone wins.    
 
-### Adaptater le jeu de Reachy à son environnement
+### Adapting Reachy's game to his environment
 
 You can find 3 notebooks in the repository :     
 * Collect_training_images.ipynb  
