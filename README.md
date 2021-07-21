@@ -2,28 +2,27 @@
 
 ## 📗 Documentation
 
-Les informations de cette capsule sont tirées des liens suivants :   
+The information in this file is taken from the following links :   
 [Le jeu du Tic-tac-toe](https://fr.wikipedia.org/wiki/Tic-tac-toe)   
 [Playground configuration](https://www.notion.so/TicTacToe-Guide-26937009c5dc4a7f950ede22c918d85a)  
 [Documentation Reachy 2019](https://pollen-robotics.github.io/reachy-2019-docs/)  
 [Documentation Reachy 2021](https://docs.pollen-robotics.com/)
 
 
-## Qu'est-ce que le jeu du Tic-tac-toe ❓ 
+## What is Tic-tac-toe game ❓ 
 ![tictactoe](img/tictactoe.png)   
-Pollen Robotics, l'entreprise créatrice de Reachy, a crée un programme capable de souligner l'interactivité de Reachy à la fois avec les humains et lors de la saisie et du déplacement d'objets : le Tic-tac-toe. 
-Le tic-tac-toe, aussi appelé « morpion » (par analogie au jeu de morpion) et « oxo » en Belgique, est un jeu de réflexion se pratiquant à deux joueurs au tour par tour dont le but est de créer le premier un alignement. Le jeu se joue généralement avec papier et crayon. 
-Deux joueurs s'affrontent. Ils doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : O ou X. Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale.
-  
+Pollen Robotics, the company that created Reachy, has created a program capable of underlining Reachy's interactivity both with humans and when grasping and moving objects: Tic-tac-toe.   
+Tic-tac-toe, also called "morpion" (by analogy with the game of tic-tac-toe) and "oxo" in Belgium, is a two-player turn-based puzzle game in which the goal is to create a line-up first. The game is usually played with paper and pencil.   
+Two players compete against each other. They must each take turns filling in a square on the grid with the symbol assigned to them: O or X. The winner is the one who manages to align three identical symbols, horizontally, vertically or diagonally.  
 
-## Travail effectué 
+## Job done 
   
-Lors de la migration du robot de du SDK 2019 au SDK 2021, beaucoup de commandes on changer et ont donc rendu impossible l'execution du jeu du Tic-tac-toe sur Reachy 2021. 
-J'ai donc adapter le code pour Reachy 2021 notamment sur des changement assez significatifs tel que : 
-* `reachy.r_arm.shoulder_pitch` : l'attribu right_arm de l'objet reachy à changer vers r_arm. Cela entraine donc un changement dans tout le code au niveau des déplacement du robot. 
+During the migration of the robot from SDK 2019 to SDK 2021, a lot of commands have changed and made it impossible to run the Tic-tac-toe game on Reachy 2021. 
+So I have adapted the code for Reachy 2021 especially on some significant changes such as :    
+* `reachy.r_arm.shoulder_pitch` : the *right_arm* attribute of the reachy object change to *r_arm*. This leads to a change in all the code at the level of the robot's movements. 
 
-* La méthode de l'objet reachy `goto()` devient une fonction externe : 
-Au lieu de faire cela :  
+* The method of the reachy object `goto()` becomes an external function :   
+Instead of doing this :  
 ```python
 reachy.right_arm.elbow_pitch.goto(
     goal_position=90,  # in degrees
@@ -31,7 +30,7 @@ reachy.right_arm.elbow_pitch.goto(
     wait=True,
 )
 ```
-On a maintenant : 
+He doing this :
 ```python
 goto(
 	goal_positions={reachy.r_arm.r_elbow_pitch: -90,}
@@ -40,50 +39,47 @@ goto(
 	)
 ```
 
-* On utilise également maintenant la méthode turn_on() pour mettre non compliant tout un système de reachy : 
-`reachy.turn_on('r_arm')`
+* Now, we use the method turn_on() to put non compliant a whole system of reachy :     
+`reachy.turn_on('r_arm')`   
 
-* l'objet reachy.r_arm n'est plus itérable : 
-`for joints in reachy.right_arm : `
+## Required configuration  
 
-## Configuration nécessaire 
+To make the game work a particular configuration is necessary :    
+* to have at least one right arm on Reachy to move the pieces  
+* to have a head with cameras to be able to watch and analyze the playground   
 
-Pour faire fonctionner le jeu une configuration particulière est nécessaire : 
-* avoir au moins un bras droit sur Reachy pour déplacer les pions
-* avoir une tête avec des caméras pour pouvoir regarder et analyser le playground
+To set up the Tic-tac-toe you will need : 
+- A reachy robot with the configuration stated above. 
+- A playground composed of : a wooden or cork board (the material of your choice), 5 cylinders, 5 cubes and black or brown tape.    
 
-Pour mettre en place le Tic-tac-toe il te faudra : 
-- Un robot reachy avec la configuration énoncée ci-dessus. 
-- Un playground composé de : une planche en bois ou en liège (de la métière de votre choix), 5 cylindres, 5 cubes et du chaterton noir ou marron. 
+### Setup the playground 
 
-### Mise en place du playground 
+To be able to play tic-tac-toe with Reachy you will first have to build a suitable playground :    
 
-Pour pouvoir jouer au morpion avec Reachy il te faudra tout d'abord construire un playground adapté : 
+For this you need a 45 x 65 board made of wood, cork, featherboard ... etc. Dimensions [here](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd)   
 
-Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... etc. Dimensions [ici](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd)
+1. On your board, you have to place the chaterton like this to create your grid :    
+![playground dimension](img/playground_base.jpg)   
 
-1. Sur ta planche, il te faut placer le chaterton comme cela afin de créer ta grille :
-![playground dimension](img/playground_base.jpg)
+2. Place the board at 175 mm from the foot of the Reachy. I advise you to fix the board well so that the robot does not move it while playing.    
+![board placement](img/playground_distance.png)   
 
-2. Place la planche à 175 mm du pied du Reachy. Je te conseille de bien fixer la planche afin que le robot ne la déplace pas en jouant. 
-![placement planche](img/playground_distance.png)
+3. The size of the pieces is variable, I trained my neural network on big and small pieces. I advise the following sizes :    
+![big piece dimension](img/dimPieces2.png)    
+![small piece dimension](img/dimPieces.png)     
 
-3. La dimension des pièces est variable, j'ai entrainé mon réseau de neurones sur des grandes et des petites pièces. Je conseille les tailles suivantes : 
-![big piece dimension](img/dimPieces2.png)  
-![small piece dimension](img/dimPieces.png)  
+You can find STL for 3D printing these parts here:          
+[Link STL cylinder](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)      
+[STL cube link](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)        
+You will need 5 pieces of each.   
 
-Tu peux trouver ici des STL pour l'impression 3D de ces pièces :      
-[Lien STL cylindre](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)    
-[Lien STL cube](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)     
-Il te faudra 5 pièces de chaque. 
+### First start-up :   
 
-### Première mise en route : 
-
-1. Allume le robot. 
-2. Copier le fichier *tictactoe_launcher.service* dans /etc/systemd/system
-3. Tape la commande `sudo systemctl enable tictactoe_launcher.service` dans un terminal. 
-4. Redémarre le robot. 
-5. Attend pendant 30 secondes, le programme va se lancer seul et Reachy va commencer à jouer. 
+1. Turn on the robot.   
+2. Copy the file *tictactoe_launcher.service* to /etc/systemd/system  
+3. Type the command `sudo systemctl enable tictactoe_launcher.service` in a terminal.   
+4. Restart the robot.    
+5. Wait for 30 seconds, the program will start itself and Reachy will start playing.   
 
 ### L'utilisation de systemctl 
 
@@ -94,51 +90,51 @@ Les commandes à connaitre :
 * `sudo systemctl enable tictactoe_launcher.service` : 
 * `sudo systemctl disable tictactoe_launcher.service` : 
 
-### Jouer avec Reachy 
+### Playing with Reachy 
 
-La démo se déroule de manière totalement autonome : 
-Le robot ne commencera une partie qu'une fois le plateau terminé. C'est à vous de réinitialiser la position de l'échiquier et de remettre les pions à leurs positions de base.
-Positions de base : 
-![playground base](img/playground_base.png)
+The demo is completely autonomous :   
+The robot will only start a game once the board is finished. It is up to you to reset the board position and to put the pieces back to their basic positions.   
+Base positions :    
+![playground base](img/playground_base.png)  
 
-Lorsqu'une partie est terminée, une nouvelle est directement redémarrée. Ainsi, à la fin d'une partie, nettoyez le plateau et une nouvelle partie commencera.
+When a game is over, a new one is directly restarted. So, at the end of a game, clean the board and a new game will start.   
 
-Ensuite, si quelque chose d'étrange se produit pendant un jeu (comme quelqu'un qui triche, la détection était erronée et nous ne connaissons donc plus notre état actuel, etc.), le robot réinitialisera le jeu. Il effectuera un mouvement aléatoire, où Reachy renversera tous les pions présents sur le plateau. Il attendra alors le début d'une nouvelle partie, c'est-à-dire lorsque le plateau sera à nouveau nettoyé. Vous pouvez utiliser ce comportement pour réinitialiser le jeu quand vous le souhaitez.
+Then, if something strange happens during a game (like someone cheating, the detection was wrong so we don't know our current state, etc.), the robot will reset the game. It will make a random move, where Reachy will knock over all the pieces on the board. It will then wait for a new game to start, i.e. when the board is cleaned up again. You can use this behavior to reset the game whenever you want.   
 
-Lorsque le plateau est prêt, le jeu commence. Reachy va désigner celui qui commence à l'aide son bras. Si il te montre, c'est à toi de commencer à jouer en plaçant un de tes pions (cubes). 
-Une fois que tu as jouer Reachy va analyser le plateau en baissant la tête, il lui faut un peu de temps pour tout détecter, mais une fois que cela est bon il prendra tout seul sa pièce et jouera à son tour. 
-ET ainsi de suite jusqu'a ce que quelqu'un gagne. 
+When the board is ready, the game starts. Reachy will point to the one who starts with his arm. If he shows you, it's your turn to start the game by placing one of your pieces (cubes).    
+Once you have played, Reachy will analyze the board by lowering his head, it takes him a little time to detect everything, but once this is good, he will take his piece and play in turn.   
+And so on until someone wins.    
 
 ### Adaptater le jeu de Reachy à son environnement
 
-Tu peux trouver 3 notebook dans le repository : 
-* Collect_training_images.ipynb
-* record_mouvements.ipynb
-* test_formDetection_tf1.ipynb
+You can find 3 notebooks in the repository :     
+* Collect_training_images.ipynb  
+* record_movements.ipynb   
+* test_formDetection_tf1.ipynb  
 
-Si tu souhaites **adapter les mouvements du Reachy lors du tictactoe**, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.  
+If you want to **adapt the movements of the Reachy during the tictactoe**, you can use the notebook *record_movements.ipynb* which allows you to record the movements such as the movements to put the pieces on the different squares.     
 
-**Si tu utilise les petites pièces** il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
-![gripper](img/gripper.png)    
-ligne : pince ouverte   
-ligne : pince fermée   
-ligne : pince ouverte   
+**If you use the small pieces** you will have to modify the clamp closure to allow Reachy to take a piece. To do this, you have to modify the file *tictactoe_playground.py* which is in /home/reachy/dev/tictactoe2021/reachy_tictactoe :       
+![gripper](img/gripper.png)       
+line: open gripper     
+line: closed gripper     
+line: open gripper     
 
-Pour vérifier que le robot prendre en photo la totalité de la grille, utilise le notebook *test_formDetection_tf1.ipynb*.   
+To check that the robot take a picture of the whole grid, use the notebook *test_formDetection_tf1.ipynb*.     
 
-Pour tout ce qui est détections d'objets erronés, voir la section "Ré-entrainer un model".   
+For all the detection of erroneous objects, see the section "Re-training a model".     
 
-## Ré-entrainer un model 
+## Re-train a model 
 
-Pour le jeu du tictactoe, j'utilise un réseau entrainé qui effectuer de la détection d'objets (ici detection de cube et cylindre). 
-Le réseau est capable de détecter les formes cubique et cylindrique de petite et grande taille, et de couleurs différentes et aussi des cases vides. Cependant, certaines couleurs qui se trouve plus près du blanc sont plus compliqué a détecter. En effet, la détection se fait grace à de la détection de contours : le réseau compare les pixels de couleurs. Donc si les pixels tire vers le blanc cela est difficile pour lui de faire la différence entre un pixel blanc et un pixel d'une couleur similaire. 
-Si vous souhaitez utiliser le réseau que j'ai entrainé, vous pouvez utiliser des pièces petites et grandes, mais je vous conseille tout de même de prendre des couleurs qui sont plus proche du bleu, du rouge ou du vert foncé. 
-De plus j'ai utiliser un playground blanc pour entrainer mon réseau, donc si vous utiliser un playground marron, noir ou d'une autre couleur vous deverez peut etre réentrainer le réseau. 
+For the tictactoe game, I use a trained network that performs object detection (here cube and cylinder detection).    
+The network is able to detect cubic and cylindrical shapes of small and large size, and of different colors and also empty boxes. However, some colors that are closer to white are more complicated to detect. Indeed, the detection is done through edge detection: the network compares the pixels of colors. So if the pixels pull towards the white it is difficult for him to make the difference between a white pixel and a pixel of a similar color.    
+If you want to use the network I trained, you can use small and large pieces, but I advise you to take colors that are closer to blue, red or dark green.   
+Also I used a white playground to train my layout, so if you use a brown, black or any other color playground you may have to re-train the layout.   
 
-La configuration que je conseille pour eviter de ré entrainer le réseau est la suivante : 
-- pièce de couleur bleu, rouge ou vert foncé 
-- playground blanc 
-- grille noir ou marron 
+The configuration that I recommend to avoid re-training the network is the following :    
+- blue, red or dark green playground   
+- white playground   
+- black or brown grid   
 
-Si vous souhaitez re entrainer le réseau il vous faudra suivre le tutoriel suivant : 
+If you want to re-train the network you will have to follow the following tutorial :    
 [Retrain a SSH mobilnet model with Tensorflow 1 for EdgeTPU](https://github.com/ta18/tod_tf1)
