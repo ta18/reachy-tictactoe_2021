@@ -122,27 +122,29 @@ Lorsque le plateau est prêt, le jeu commence. Reachy va désigner celui qui com
 Une fois que tu as jouer Reachy va analyser le plateau en baissant la tête, il lui faut un peu de temps pour tout détecter, mais une fois que cela est bon il prendra tout seul sa pièce et jouera à son tour. 
 ET ainsi de suite jusqu'a ce que quelqu'un gagne. 
 
-### Adaptations a votre environnement 
+### Adaptater le jeu de Reachy à son environnement
 
 Tu peux trouver 3 notebook dans le repository : 
 * Collect_training_images.ipynb
 * record_mouvements.ipynb
 * test_formDetection_tf1.ipynb
 
-Si tu souhaites adapter les mouvements du Reachy lors du tictactoe, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.    
-Si tu utilise les petites pièces il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
+Si tu souhaites **adapter les mouvements du Reachy lors du tictactoe**, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.  
+
+**Si tu utilise les petites pièces** il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
 ![gripper](img/gripper.png)    
 ligne : pince ouverte   
 ligne : pince fermée   
 ligne : pince ouverte   
 
 Pour vérifier que le robot prendre en photo la totalité de la grille, utilise le notebook *test_formDetection_tf1.ipynb*.   
-Pour tout ce qui est détection d'objet erroné, voir la section "Ré-entrainer un model".   
+
+Pour tout ce qui est détections d'objets erronés, voir la section "Ré-entrainer un model".   
 
 ## Ré-entrainer un model 
 
 Pour le jeu du tictactoe, j'utilise un réseau entrainé qui effectuer de la détection d'objets (ici detection de cube et cylindre). 
-Le réseau est capable de détecter les formes cubique et cylindrique de petite et grande taille, et de couleurs différentes. Cependant, certaines couleurs qui se trouve plus près du blanc sont plus compliqué a détecter. En effet, la détection se fait grace à de la détection de contours : le réseau compare les pixels de couleurs. Donc si les pixels tire vers le blanc cela est difficile pour lui de faire la différence entre un pixel blanc et un pixel d'une couleur similaire. 
+Le réseau est capable de détecter les formes cubique et cylindrique de petite et grande taille, et de couleurs différentes et aussi des cases vides. Cependant, certaines couleurs qui se trouve plus près du blanc sont plus compliqué a détecter. En effet, la détection se fait grace à de la détection de contours : le réseau compare les pixels de couleurs. Donc si les pixels tire vers le blanc cela est difficile pour lui de faire la différence entre un pixel blanc et un pixel d'une couleur similaire. 
 Si vous souhaitez utiliser le réseau que j'ai entrainé, vous pouvez utiliser des pièces petites et grandes, mais je vous conseille tout de même de prendre des couleurs qui sont plus proche du bleu, du rouge ou du vert foncé. 
 De plus j'ai utiliser un playground blanc pour entrainer mon réseau, donc si vous utiliser un playground marron, noir ou d'une autre couleur vous deverez peut etre réentrainer le réseau. 
 
