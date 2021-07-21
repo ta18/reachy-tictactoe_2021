@@ -101,21 +101,17 @@ class TictactoePlayground(object):
         #TC for disk in self.reachy.head.neck.disks:
         #    disk.compliant = False
         self.reachy.turn_on('head')
-        time.sleep(0.1)
 
-        self.reachy.head.look_at(x=1, y=0, z=0, duration=1.5) 
+        #self.reachy.head.look_at(x=1, y=0, z=0, duration=1.5) 
         #TC self.reachy.head.look_at(0.5, 0, z=-0.6, duration=1)
-        self.reachy.head.look_at(x=0.75, y=0, z=-0.6, duration=1) 
-
-        time.sleep(3)
+        self.reachy.head.look_at(x=1, y=0, z=-0.55, duration=1) 
 
         # Wait an image from the camera
         #TC self.wait_for_img()
         #TC success, img = self.reachy.head.right_camera.read() 
         img = self.reachy.right_camera.wait_for_new_frame()
-        logger.info(
-            'pouet'
-        )
+        time.sleep(3)
+
         # TEMP:
         import cv2 as cv
         i = np.random.randint(1000)
@@ -137,10 +133,10 @@ class TictactoePlayground(object):
         #    self.reachy.head.look_at(1, 0, 0, duration=0.75)
         #    return
 
-        tic = time.time()
+        #tic = time.time()
         
         #TC success, img = self.reachy.head.right_camera.read() 
-        img = self.reachy.right_camera.wait_for_new_frame()
+        #img = self.reachy.right_camera.wait_for_new_frame()
         ok, board, _ = get_board_configuration(img)
 
         # TEMP
@@ -153,9 +149,7 @@ class TictactoePlayground(object):
         )
 
         #TC self.reachy.head.compliant = False
-        self.reachy.turn_on('head')
-        time.sleep(0.1)
-        self.reachy.head.look_at(1, 0, 0, duration=0.75)
+        self.reachy.head.look_at(1, 0, 0, duration=1.5)
 
         return ok, board
 
@@ -214,9 +208,10 @@ class TictactoePlayground(object):
         t.start()
 
         self.goto_base_position()
+        self.reachy.turn_on('r_arm')
         self.reachy.head.look_at(0.5, 0, -0.4, duration=1)
         #TC TrajectoryPlayer(self.reachy, moves['shuffle-board']).play(wait=True)
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/shuffle-board.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/shuffle-board.npz'
         self.trajectoryPlayer(path)
         self.goto_rest_position()
         self.reachy.head.look_at(1, 0, 0, duration=1)
@@ -281,12 +276,11 @@ class TictactoePlayground(object):
         return board
 
     def play_pawn(self, grab_index, box_index):
-        self.reachy.head.look_at(
-            0.3, -0.3, -0.3,
-            duration=0.85,
-        )
+        self.reachy.head.look_at(x=1, y=-0.5, z=-0.55, duration=1) 
 
-        self.reachy.r_arm.r_gripper.speed_limit = 60
+        self.reachy.r_arm.r_gripper.speed_limit = 80
+        self.reachy.r_arm.r_gripper.compliant = False
+        self.reachy.turn_on('r_arm')
 
         logger.info(f'BOX_INDEX = {box_index}')
 
@@ -300,7 +294,7 @@ class TictactoePlayground(object):
         #     #    wait=True,
         #     #)
         #     logger.info('JE PASSE LA C BIZARRE')
-        #     path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_3.npz'
+        #     path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/grab_3.npz'
         #     self.goto_position(path)
 
         # Grab the pawn at grab_index
@@ -313,12 +307,12 @@ class TictactoePlayground(object):
 
         logger.info('JE PASSE DANS PLAY_PAWN')
         self.reachy.r_arm.r_gripper.goal_position = -40 #open the gripper 
-        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/grab_{grab_index}.npz'
+        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/grab_{grab_index}.npz'
         self.goto_position(path)
         time.sleep(2)
         self.reachy.r_arm.r_gripper.compliant = False 
         self.reachy.r_arm.r_gripper.goal_position = -5 #close the gripper to take the cylinder 
-        time.sleep(2)
+        time.sleep(5)
         #TC self.reachy.right_arm.hand.close() 
 
         #TC self.reachy.head.left_antenna.goto(45, 1, interpolation_mode='minjerk')
@@ -350,10 +344,10 @@ class TictactoePlayground(object):
         #    duration=1,
         #    wait=True,
         #)
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/lift.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/lift.npz'
         self.goto_position(path)
 
-        self.reachy.head.look_at(0.5, 0, -0.35, duration=0.5)
+        #self.reachy.head.look_at(0.5, 0, -0.35, duration=0.5)
         time.sleep(0.1)
 
         # Put it in box_index
@@ -368,11 +362,14 @@ class TictactoePlayground(object):
         #}
         #self.goto_position(j, duration=0.5, wait=True)
         #TrajectoryPlayer(self.reachy, put).play(wait=True)
-        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/put_{box_index}_smooth_10_kp.npz'
+        logger.info(f'JE POSE MON CYLINDRE LA : {box_index}')
+        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/put_{box_index}.npz'
         self.trajectoryPlayer(path)
-
+        time.sleep(1)
         #TC self.reachy.right_arm.hand.open()
-        self.reachy.r_arm.r_gripper.goal_position = -30
+        self.reachy.r_arm.r_gripper.compliant = False
+        self.reachy.r_arm.r_gripper.goal_position = -40
+        time.sleep(5)
 
         # Go back to rest position
         #TC self.goto_position(
@@ -380,7 +377,7 @@ class TictactoePlayground(object):
         #    duration=1,
         #    wait=True,
         #)
-        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/back_{box_index}_upright.npz'
+        path = f'/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/back_{box_index}_upright.npz'
         self.goto_position(path)
 
         #TC self.reachy.head.left_antenna.goto(0, 0.2, interpolation_mode='minjerk')
@@ -388,7 +385,7 @@ class TictactoePlayground(object):
         #TC self.reachy.head.right_antenna.goto(0, 0.2, interpolation_mode='minjerk')
         self.reachy.head.r_antenna.goal_position = 0
 
-        self.reachy.head.look_at(1, 0, 0, duration=1)
+        #self.reachy.head.look_at(1, 0, 0, duration=1)
 
         if box_index in (8, 9):
             #TC self.goto_position(
@@ -396,7 +393,7 @@ class TictactoePlayground(object):
             #    duration=1,
             #    wait=True,
             #)
-            path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/back_to_back.npz'
+            path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/back_to_back.npz'
             self.goto_position(path)
 
         #TC self.goto_position(
@@ -404,7 +401,7 @@ class TictactoePlayground(object):
         #    duration=2,
         #    wait=True,
         #)
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/back_rest.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/back_rest.npz'
         self.goto_position(path)
 
         self.goto_rest_position()
@@ -463,17 +460,19 @@ class TictactoePlayground(object):
     def run_my_turn(self):
         self.goto_base_position()
         #TC TrajectoryPlayer(self.reachy, moves['my-turn']).play(wait=True) 
+        self.reachy.turn_on('r_arm')
         logger.info('OOOOO my turn')
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/my-turn.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/my-turn.npz'
         self.trajectoryPlayer(path)
         logger.info('OOOOOOOOOOOOOOOOO my turn')
         self.goto_rest_position()
 
     def run_your_turn(self):
         self.goto_base_position()
+        self.reachy.turn_on('r_arm')
         logger.info('OOOOOOOO your turn')
         #TC TrajectoryPlayer(self.reachy, moves['your-turn']).play(wait=True) 
-        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021/your-turn.npz'
+        path = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/moves-2021_nemo/your-turn.npz'
         self.trajectoryPlayer(path)
         logger.info('OOOOOOOOOOOOOOOOO your  turn')
         self.goto_rest_position()
@@ -518,10 +517,10 @@ class TictactoePlayground(object):
         time.sleep(0.1)
 
         #TC self.reachy.right_arm.shoulder_pitch.torque_limit = 75
-        self.reachy.r_arm.r_shoulder_pitch.torque_limit = 75
+        #self.reachy.r_arm.r_shoulder_pitch.torque_limit = 75
         #TC self.reachy.right_arm.elbow_pitch.torque_limit = 75
-        self.reachy.r_arm.r_elbow_pitch.torque_limit = 75
-        time.sleep(0.1)
+        #self.reachy.r_arm.r_elbow_pitch.torque_limit = 75
+        #time.sleep(0.1)
 
         #TC self.goto_position(base_pos, duration, wait=True) 
         goto(
@@ -536,16 +535,20 @@ class TictactoePlayground(object):
                 duration=1.0,
                 interpolation_mode=InterpolationMode.MINIMUM_JERK
             )
+        time.sleep(0.1)
+        self.reachy.r_arm.r_shoulder_pitch.torque_limit = 75
+        self.reachy.r_arm.r_elbow_pitch.torque_limit = 75
 
     def goto_rest_position(self, duration=2.0):
         # FIXME: Why is it needed?
         time.sleep(0.1)
-
+        self.reachy.head.look_at(x=1, y=0, z=0, duration=1) 
         self.goto_base_position(0.6 * duration)
         time.sleep(0.1)
 
         self.reachy.turn_on('r_arm')
         #TC self.goto_position(rest_pos, 0.4 * duration, wait=True)
+
         goto(
             goal_positions=
                     {self.reachy.r_arm.r_shoulder_pitch: 50,
@@ -558,12 +561,9 @@ class TictactoePlayground(object):
                 duration=1.0,
                 interpolation_mode=InterpolationMode.MINIMUM_JERK
             )
-        time.sleep(0.1)
-        logger.info('je passe la')
+        time.sleep(1)
         #TC self.reachy.right_arm.shoulder_pitch.torque_limit = 0
-        self.reachy.r_arm.r_shoulder_pitch.torque_limit = 0
         #TC self.reachy.right_arm.elbow_pitch.torque_limit = 0
-        self.reachy.r_arm.r_shoulder_pitch.torque_limit = 0
 
         time.sleep(0.25)
 
@@ -578,6 +578,10 @@ class TictactoePlayground(object):
         self.reachy.r_arm.r_wrist_roll.comliant = True
         self.reachy.r_arm.r_gripper.comliant = True
 
+        #self.reachy.r_arm.r_shoulder_pitch.torque_limit = 0
+        #self.reachy.r_arm.r_elbow_pitch.torque_limit = 0
+        self.reachy.turn_off_smoothly('r_arm')
+
         time.sleep(0.25)
     
     def trajectoryPlayer(self , path):
@@ -591,17 +595,16 @@ class TictactoePlayground(object):
         listTraj = np.array(listTraj).T.tolist()
 
         sampling_frequency = 100  #en hertz
-
-        recorded_joints = [
-            self.reachy.r_arm.r_shoulder_pitch,
-            self.reachy.r_arm.r_shoulder_roll,
-            self.reachy.r_arm.r_arm_yaw,
-            self.reachy.r_arm.r_elbow_pitch,
-            self.reachy.r_arm.r_forearm_yaw,
-            self.reachy.r_arm.r_wrist_pitch,
-            self.reachy.r_arm.r_wrist_roll,
-            self.reachy.r_arm.r_gripper, 
-        ]
+        
+        recorded_joints = []
+        for joint,val in listMoves.items():
+            if 'neck' in joint : 
+                fullName = 'self.'+ joint
+            elif 'r_' in joint: 
+                fullName = 'self.'+joint
+            elif 'l_' in joint: 
+                fullName = 'self.'+joint
+            recorded_joints.append(eval(fullName))
 
         for joint in recorded_joints:
             joint.compliant = False
@@ -696,7 +699,7 @@ class TictactoePlayground(object):
             for joints in listNameJoints:
                 if 'neck' in joints : 
                     fullName = 'self.reachy.head.'+joints+'.temperature'
-                elif 'r_' in joints: 
+                elif 'l_' in joints: 
                     fullName = 'self.reachy.r_arm.'+joints+'.temperature'
                 listObj.append(fullName)
 

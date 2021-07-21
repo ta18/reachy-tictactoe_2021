@@ -44,8 +44,8 @@ model_path = os.path.join(dir_path, 'models')
 #path_model_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.tflite'
 #path_label_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.txt'
 
-path_model = '/home/reachy/Desktop/tflite2/output_tflite_graph_edgetpu.tflite'
-path_label = '/home/reachy/Desktop/tflite2/label.txt'
+path_model = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
+path_label = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tflite39927/label.txt'
 
 labels = read_label_file(path_label) if path_label else {}
 interpreter = make_interpreter(path_model)
@@ -93,10 +93,11 @@ def get_board_configuration(image):
     #boardEmpty = np.zeros((3, 3), dtype=np.uint8)
     
     #size for crop the image taking by the reachy's camera 
-    top = 270
-    left = 40
-    height = 320
-    width = 320
+    y1 = 380
+    y2 = 650
+    x1 = 30
+    x2 = 380
+    dim = (300,300)
 
     # try:
     #     custom_board_cases = get_board_cases(img)
@@ -122,26 +123,23 @@ def get_board_configuration(image):
     #            piece = 0
     #        board[2 - row, 2 - col] = piece
 
-    path_model = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tfliteV2/output_tflite_graph_edgetpu.tflite'
-    path_label = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tfliteV2/label.txt'
+    path_model = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
+    path_label = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/tflite39927/label.txt'
 
     #labels = read_label_file(path_label) if path_label else {}
     interpreter = make_interpreter(path_model)
     interpreter.allocate_tensors()
 
+    image = image[y1:y2, x1:x2]
+    image = cv.resize(image, dim)
     image = Image.fromarray(image)
-    box=(left, top, left+width, top+height)
-    image = image.crop(box) 
-    image = image.resize((300,300), Image.ANTIALIAS)
+
     _, scale = common.set_resized_input(interpreter, image.size, lambda size: image.resize(size, Image.ANTIALIAS))
 
-    args_threshold = 0.3
+    args_threshold = 0.4
 
     #for _ in range(args_count):
-    start = time.perf_counter()
     interpreter.invoke()
-    inference_time = time.perf_counter() - start
-
     objs = detect.get_objects(interpreter, args_threshold, scale)
     #print('%.2f ms' % (inference_time * 1000))
 
@@ -170,7 +168,7 @@ def get_board_configuration(image):
             Lx = [e[2][0] for e in Ly_row] # liste des xmin des 3 obj
             index_x = np.argsort(Lx)[::-1] # tri décroissant
             np.array(Lx)[index_x]
-            Ly_row = Ly_row[index_x]   # tri sur X pemièer ligne
+            Ly_row = Ly_row[index_x]   # tri sur X pemiere ligne
 
             board[int(i/3)] = Ly_row[:,:1].flatten()
         board = board[::-1, ::-1]
