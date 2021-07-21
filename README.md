@@ -131,7 +131,7 @@ Tu peux trouver 3 notebook dans le repository :
 
 Si tu souhaites adapter les mouvements du Reachy lors du tictactoe, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.    
 Si tu utilise les petites pièces il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
-[gripper](img/gripper.png)    
+![gripper](img/gripper.png)    
 ligne : pince ouverte   
 ligne : pince fermée   
 ligne : pince ouverte   
