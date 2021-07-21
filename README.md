@@ -80,10 +80,10 @@ Il te faudra 5 pièces de chaque.
 ### Première mise en route : 
 
 1. Allume le robot. 
-2. Tape la commande `sudo systemctl enable tictactoe_launcher.service` dans un terminal. 
-3. Copier le fichier *tictactoe_launcher.service* dans /etc/systemd/system
-5. Redémarre le robot. 
-6. Attend pendant 30 secondes, le programme va se lancer seul et Reachy va commencer à jouer. 
+2. Copier le fichier *tictactoe_launcher.service* dans /etc/systemd/system
+3. Tape la commande `sudo systemctl enable tictactoe_launcher.service` dans un terminal. 
+4. Redémarre le robot. 
+5. Attend pendant 30 secondes, le programme va se lancer seul et Reachy va commencer à jouer. 
 
 ### L'utilisation de systemctl 
 
