@@ -77,18 +77,19 @@ Pour pouvoir jouer au morpion avec Reachy il te faudra tout d'abord construire u
 Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... etc. Dimensions [ici](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd)
 
 1. Sur ta planche, il te faut placer le chaterton comme cela afin de créer ta grille :
-![playground dimension](img/playground_grid.png)
+![playground dimension](img/playground_base.png)
 
 2. Place la planche à 175 mm du pied du Reachy. Je te conseille de bien fixer la planche afin que le robot ne la déplace pas en jouant. 
 ![placement planche](img/playground_distance.png)
 
-3. Il te faut fabriquer ou acheter des cubes de 51 x 51mm et des cylindre de 50mm de diametre par 50mm de hauteur. Tu peux trouver ici des STL pour l'impression 3D de ces pièces :  
-[Lien STL cylindre](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)  
-[Lien STL cube](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)   
+3. La dimension des pièces est variable, j'ai entrainé mon réseau de neurones sur des grandes et des petites pièces. Je conseille les tailles suivantes : 
+![big piece dimension](img/dimPiece2.png)  
+![small piece dimension](img/dimPiece.png)  
+
+Tu peux trouver ici des STL pour l'impression 3D de ces pièces :      
+[Lien STL cylindre](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)    
+[Lien STL cube](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)     
 Il te faudra 5 pièces de chaque. 
-
-![dimension cylinder](img/dim_cylinder.png) ![dimension cube](img/dim_cube.png)
-
 
 ### Première mise en route : 
 
