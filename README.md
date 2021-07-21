@@ -76,13 +76,14 @@ You will need 5 pieces of each.
 
 1. Turn on the robot.   
 2. Clone the repository : 
-3. cd ~/dev 
-4. clone 
-5. Copy the file *tictactoe_launcher.service* to /etc/systemd/system  sudo cp /home/reachy/dev/reachy-tictactoe_2021/tictactoe_launcher.service /etc/systemd/system
-6. sudo systemctl daemon-reload 
-7. Type the command `sudo systemctl enable tictactoe_launcher.service` in a terminal.   Created symlink /etc/systemd/system/multi-user.target.wants/tictactoe_launcher.service → /etc/systemd/system/tictactoe_launcher.service.
-8. Restart the robot.    
-9. Wait for 30 seconds, the program will start itself and Reachy will start playing.   
+3. pip3 install sklearn zzlog
+4. cd ~/dev 
+5. clone 
+6. Copy the file *tictactoe_launcher.service* to /etc/systemd/system  sudo cp /home/reachy/dev/reachy-tictactoe_2021/tictactoe_launcher.service /etc/systemd/system
+7. sudo systemctl daemon-reload 
+8. Type the command `sudo systemctl enable tictactoe_launcher.service` in a terminal.   Created symlink /etc/systemd/system/multi-user.target.wants/tictactoe_launcher.service → /etc/systemd/system/tictactoe_launcher.service.
+9. Restart the robot.    
+10. Wait for 30 seconds, the program will start itself and Reachy will start playing.   
 
 ### L'utilisation de systemctl 
 
