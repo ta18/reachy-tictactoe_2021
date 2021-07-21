@@ -129,15 +129,16 @@ Tu peux trouver 3 notebook dans le repository :
 * record_mouvements.ipynb
 * test_formDetection_tf1.ipynb
 
-Si tu souhaites adapter les mouvements du Reachy lors du tictactoe, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.
-Si tu utilise les petites pièces il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe : 
-![pgripper](img/gripper.png)
-ligne : pince ouverte 
-ligne : pince fermée
-ligne : pince ouverte 
+Si tu souhaites adapter les mouvements du Reachy lors du tictactoe, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.    
+Si tu utilise les petites pièces il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
+[gripper](img/gripper.png)    
+ligne : pince ouverte   
+ligne : pince fermée   
+ligne : pince ouverte   
 
-Pour vérifier que le robot prendre en photo la totalité de la grille, utilise le notebook *test_formDetection_tf1.ipynb*. 
-Pour tout ce qui est détection d'objet erroné, voir la section "Ré-entrainer un model". 
+Pour vérifier que le robot prendre en photo la totalité de la grille, utilise le notebook *test_formDetection_tf1.ipynb*.   
+Pour tout ce qui est détection d'objet erroné, voir la section "Ré-entrainer un model".   
+
 ## Ré-entrainer un model 
 
 Pour le jeu du tictactoe, j'utilise un réseau entrainé qui effectuer de la détection d'objets (ici detection de cube et cylindre). 
