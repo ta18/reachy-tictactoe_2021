@@ -94,8 +94,9 @@ Il te faudra 5 pièces de chaque.
 
 1. Allume le robot. 
 2. Tape la commande `sudo systemctl enable tictactoe_launcher.service` dans un terminal. 
-3. Redémarre le robot. 
-4. Attend pendant 30 secondes, le programme va se lancer seul et Reachy va commencer à jouer. 
+3. Copier le fichier *tictactoe_launcher.service* dans /etc/systemd/system
+5. Redémarre le robot. 
+6. Attend pendant 30 secondes, le programme va se lancer seul et Reachy va commencer à jouer. 
 
 ### L'utilisation de systemctl 
 
@@ -121,15 +122,22 @@ Lorsque le plateau est prêt, le jeu commence. Reachy va désigner celui qui com
 Une fois que tu as jouer Reachy va analyser le plateau en baissant la tête, il lui faut un peu de temps pour tout détecter, mais une fois que cela est bon il prendra tout seul sa pièce et jouera à son tour. 
 ET ainsi de suite jusqu'a ce que quelqu'un gagne. 
 
-### Mise en place de la grille 
+### Adaptations a votre environnement 
 
-Afin d'adapter la détection de la grille et des cylindres et cubes, tu vas devoir rentrer les dimensions exactes de ta grille. 
-Ouvre le jupyter notebook *Check_boxes* qui va te permettre de visualiser la grille et les différentes boxes de la grille à travers les yeux de Reachy. 
-```
-cd ~/dev/reachy-tictactoe/notebooks
-jupyter notebook 
-```
-Suivre les indications sur le notebook. 
+Tu peux trouver 3 notebook dans le repository : 
+* Collect_training_images.ipynb
+* record_mouvements.ipynb
+* test_formDetection_tf1.ipynb
+
+Si tu souhaites adapter les mouvements du Reachy lors du tictactoe, tu peux utiliser le notebook *record_mouvements.ipynb* qui te permet d'enregistrer les mouvements tels que les mouvements pour poser les pièces au différentes cases.    
+Si tu utilise les petites pièces il te faudra modifier la fermeture de la pinces pour permettre à Reachy de prendre une pièce. Pour cela, tu dois modifier le fichier *tictactoe_playground.py* qui se trouve dans /home/reachy/dev/tictactoe2021/reachy_tictactoe :    
+![gripper](img/gripper.png)    
+ligne : pince ouverte   
+ligne : pince fermée   
+ligne : pince ouverte   
+
+Pour vérifier que le robot prendre en photo la totalité de la grille, utilise le notebook *test_formDetection_tf1.ipynb*.   
+Pour tout ce qui est détection d'objet erroné, voir la section "Ré-entrainer un model".   
 
 ## Ré-entrainer un model 
 
