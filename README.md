@@ -74,7 +74,7 @@ Pour mettre en place le Tic-tac-toe il te faudra :
 
 Pour pouvoir jouer au morpion avec Reachy il te faudra tout d'abord construire un playground adapté : 
 
-Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... etc. 
+Pour cela il te faut une planche de 45 x 65 en bois, liège, carton plume ... etc. Dimensions [ici](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd)
 
 1. Sur ta planche, il te faut placer le chaterton comme cela afin de créer ta grille :
 ![playground dimension](img/playground_grid.png)
