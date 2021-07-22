@@ -88,12 +88,11 @@ def draw_objects(draw, objs, labels):
               fill='red')
 
 def get_board_configuration(image):
-    nb = 0
     board = np.zeros((3, 3), dtype=np.uint8)
     #boardEmpty = np.zeros((3, 3), dtype=np.uint8)
     
     #size for crop the image taking by the reachy's camera 
-    y1 = 380
+    y1 = 370
     y2 = 650
     x1 = 30
     x2 = 380
@@ -151,8 +150,8 @@ def get_board_configuration(image):
 
     image = image.convert('RGB')
     draw_objects(ImageDraw.Draw(image), objs, labels)
-    image.save(f'/home/reachy/dev/reachy-tictactoe/images/image{nb}.png')
-    nb = nb+1
+    id = "_".join([time.strftime("%y-%m-%d_%H-%M-%S")])
+    image.save(f'/home/reachy/dev/tictactoe2021/images/{id}.png')
 
     ok = False 
     logger.info(f'Taille objs = {len(objs)}')
