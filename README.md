@@ -56,7 +56,7 @@ To set up the Tic-tac-toe you will need :
 
 To be able to play tic-tac-toe with Reachy you will first have to build a suitable playground :    
 
-For this you need a 45 x 65 board made of wood, cork, featherboard ... etc. Dimensions [here](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd)   
+For this you need a **45 x 65 board made of wood, cork, featherboard** ... etc. The dimensions are [here](https://www.notion.so/Dimensions-setup-morpion-a032f56eb2f14702a75a1bb347bbd2dd).
 
 1. On your board, you have to place the chaterton like this to create your grid :    
 ![playground dimension](img/playground_base.jpg)   
@@ -99,7 +99,7 @@ Les commandes à connaitre :
 
 The demo is completely autonomous :   
 The robot will only start a game once the board is finished. It is up to you to reset the board position and to put the pieces back to their basic positions.   
-The basic position it's : 
+The **basic position** it's : 
 - a grid without game pieces  
 - the reachy's pieces (cylinder) to the left of the board 
 
@@ -118,16 +118,18 @@ You can find 3 notebooks in the repository :
 * record_movements.ipynb   
 * test_formDetection_tf1.ipynb  
 
+#### Adapt the mouvements
 If you want to **adapt the movements of the Reachy during the tictactoe**, you can use the notebook *record_movements.ipynb* which allows you to record the movements such as the movements to put the pieces on the different squares.     
 
+#### Adapt the opening of the gripper 
 **If you use the small pieces** you will have to modify the gripper closure to allow Reachy to take a piece. To do this, you have to modify the file *tictactoe_playground.py* which is in /home/reachy/dev/tictactoe2021/reachy_tictactoe :       
 ![gripper](img/gripper.png)       
 line: open gripper     
 line: closed gripper     
 line: open gripper     
 
+#### Check the object detection 
 To check that the robot take a picture of the whole grid, use the notebook *test_formDetection_tf1.ipynb*.     
-
 For all the object detection mistake, see the section "Re-training a model".     
 
 ## Re-train a model 
