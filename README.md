@@ -142,3 +142,6 @@ The configuration that I recommend to avoid re-training the network is the follo
 
 If you want to re-train the network you will have to follow the following tutorial :    
 [Retrain a SSH mobilnet model with Tensorflow 1 for EdgeTPU](https://github.com/ta18/tod_tf1)
+
+When your model is retrain you have to put the output_tflite_graph_edgetpu.tflite and the label.txt file in /home/reachy/dev/tictactoe2021/reachy_tictactoe/models and change this line in vision.py : 
+![path model](img/models.png)     
