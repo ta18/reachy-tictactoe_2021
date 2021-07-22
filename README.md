@@ -3,10 +3,10 @@
 ## 📗 Documentation
 
 The information in this file is taken from the following links :   
-[Le jeu du Tic-tac-toe](https://fr.wikipedia.org/wiki/Tic-tac-toe)   
+[Tic-tac-toe game](https://fr.wikipedia.org/wiki/Tic-tac-toe)   
 [Playground configuration](https://www.notion.so/TicTacToe-Guide-26937009c5dc4a7f950ede22c918d85a)  
-[Documentation Reachy 2019](https://pollen-robotics.github.io/reachy-2019-docs/)  
-[Documentation Reachy 2021](https://docs.pollen-robotics.com/)
+[Reachy 2019 Documentation](https://pollen-robotics.github.io/reachy-2019-docs/)  
+[Reachy 2021 Documentation](https://docs.pollen-robotics.com/)
 
 
 ## What is Tic-tac-toe game ❓ 
