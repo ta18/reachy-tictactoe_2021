@@ -312,7 +312,7 @@ class TictactoePlayground(object):
         time.sleep(2)
         self.reachy.r_arm.r_gripper.compliant = False 
         self.reachy.r_arm.r_gripper.goal_position = -5 #close the gripper to take the cylinder 
-        time.sleep(5)
+        time.sleep(2)
         #TC self.reachy.right_arm.hand.close() 
 
         #TC self.reachy.head.left_antenna.goto(45, 1, interpolation_mode='minjerk')
@@ -369,7 +369,7 @@ class TictactoePlayground(object):
         #TC self.reachy.right_arm.hand.open()
         self.reachy.r_arm.r_gripper.compliant = False
         self.reachy.r_arm.r_gripper.goal_position = -40
-        time.sleep(5)
+        time.sleep(2)
 
         # Go back to rest position
         #TC self.goto_position(
