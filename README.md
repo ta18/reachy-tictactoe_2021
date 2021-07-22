@@ -83,25 +83,24 @@ sudo cp /home/reachy/dev/reachy-tictactoe_2021/tictactoe_launcher.service /etc/s
 sudo systemctl daemon-reload 
 sudo systemctl enable tictactoe_launcher.service
 ```
-The output must be : `Created symlink /etc/systemd/system/multi-user.target.wants/tictactoe_launcher.service → /etc/systemd/system/tictactoe_launcher.service.`
-5. Restart the robot.    
-6. Wait for 30 seconds, the program will start itself and Reachy will start playing.   
+The output must be : `Created symlink /etc/systemd/system/multi-user.target.wants/tictactoe_launcher.service → /etc/systemd/system/tictactoe_launcher.service.`    
+5. Restart the robot.     
+6. Wait for 30 seconds, the program will start itself and Reachy will start playing.    
 
 ### L'utilisation de systemctl 
 
 Les commandes à connaitre : 
-* `sudo systemctl stop tictactoe_launcher.service` : stop le service tictactoe 
-* `sudo systemctl start tictactoe_launcher.service` : start le service tictactoe / lance le jeu 
-* `sudo systemctl status tictactoe_launcher.service` : permet de voir l'etat du service, si il y a des erreurs ou non 
-* `sudo systemctl enable tictactoe_launcher.service` : 
-* `sudo systemctl disable tictactoe_launcher.service` : 
+* `sudo systemctl stop tictactoe_launcher.service` : it will stop the service 
+* `sudo systemctl start tictactoe_launcher.service` : it will stop the service and the game
+* `sudo systemctl status tictactoe_launcher.service` : it will give you the state of your service, if they are some mistakes  
 
 ### Playing with Reachy 
 
 The demo is completely autonomous :   
 The robot will only start a game once the board is finished. It is up to you to reset the board position and to put the pieces back to their basic positions.   
-Base positions :    
-![playground base](img/playground_base.png)  
+The basic position it's : 
+- a grid without game pieces  
+- the reachy's pieces (cylinder) to the left of the board 
 
 When a game is over, a new one is directly restarted. So, at the end of a game, clean the board and a new game will start.   
 
@@ -120,7 +119,7 @@ You can find 3 notebooks in the repository :
 
 If you want to **adapt the movements of the Reachy during the tictactoe**, you can use the notebook *record_movements.ipynb* which allows you to record the movements such as the movements to put the pieces on the different squares.     
 
-**If you use the small pieces** you will have to modify the clamp closure to allow Reachy to take a piece. To do this, you have to modify the file *tictactoe_playground.py* which is in /home/reachy/dev/tictactoe2021/reachy_tictactoe :       
+**If you use the small pieces** you will have to modify the gripper closure to allow Reachy to take a piece. To do this, you have to modify the file *tictactoe_playground.py* which is in /home/reachy/dev/tictactoe2021/reachy_tictactoe :       
 ![gripper](img/gripper.png)       
 line: open gripper     
 line: closed gripper     
@@ -128,7 +127,7 @@ line: open gripper
 
 To check that the robot take a picture of the whole grid, use the notebook *test_formDetection_tf1.ipynb*.     
 
-For all the detection of erroneous objects, see the section "Re-training a model".     
+For all the object detection mistake, see the section "Re-training a model".     
 
 ## Re-train a model 
 
@@ -145,5 +144,5 @@ The configuration that I recommend to avoid re-training the network is the follo
 If you want to re-train the network you will have to follow the following tutorial :    
 [Retrain a SSH mobilnet model with Tensorflow 1 for EdgeTPU](https://github.com/ta18/tod_tf1)
 
-When your model is retrain you have to put the output_tflite_graph_edgetpu.tflite and the label.txt file in /home/reachy/dev/tictactoe2021/reachy_tictactoe/models and change the path_model variable in vision.py : 
+When your model is retrain you have to put the output_tflite_graph_edgetpu.tflite and the label.txt file in /home/reachy/dev/tictactoe2021/reachy_tictactoe/models and change the path_model variable in *vision.py* : 
 ![path model](img/models.png)     
