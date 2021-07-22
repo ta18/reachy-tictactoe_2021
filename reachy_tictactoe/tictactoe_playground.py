@@ -650,7 +650,7 @@ class TictactoePlayground(object):
                 fullName = 'self.reachy.r_arm.'+joints+'.temperature'
             listObj.append(fullName)
 
-        temperatures = {key:eval(obj) for key,obj in zip(listNameJoints,listObj)}
+        temperatures = {key:temp for key,temp in zip(listNameJoints,listObj)}
 
         logger.info(
             'Checking Reachy motors temperature',
@@ -701,9 +701,9 @@ class TictactoePlayground(object):
                     fullName = 'self.reachy.head.'+joints+'.temperature'
                 elif 'l_' in joints: 
                     fullName = 'self.reachy.r_arm.'+joints+'.temperature'
-                listObj.append(fullName)
+                listObj.append(eval(fullName))
 
-            temperatures = {key:eval(obj) for key,obj in zip(listNameJoints,listObj)}
+            temperatures = {key:temp for key,temp in zip(listNameJoints,listObj)}
 
             logger.warning(
                 'Motors cooling down...',
