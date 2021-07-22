@@ -135,7 +135,7 @@ def get_board_configuration(image):
 
     _, scale = common.set_resized_input(interpreter, image.size, lambda size: image.resize(size, Image.ANTIALIAS))
 
-    args_threshold = 0.4
+    args_threshold = 0.6
 
     #for _ in range(args_count):
     interpreter.invoke()
