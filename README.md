@@ -11,9 +11,9 @@ The information in this file is taken from the following links :
 
 ## What is Tic-tac-toe game ❓ 
 ![tictactoe](img/tictactoe.png)   
-Pollen Robotics, the company that created Reachy, has created a program capable of underlining Reachy's interactivity by grasping and moving objects: Tic-tac-toe.   
-Tic-tac-toe, also called "morpion" (by analogy with the game of tic-tac-toe) and "oxo" in Belgium, is a two-player turn-based puzzle game in which the goal is to create a line-up first. The game is usually played with paper and pencil.   
-Two players compete against each other. They must each take turns filling in a square on the grid with the symbol assigned to them: O or X. The winner is the one who manages to align three identical symbols, horizontally, vertically or diagonally.  
+Pollen Robotics, the company that created Reachy, has created a program capable of underlining Reachy's interactivity by grasping and moving objects: the Tic-tac-toe game.   
+Tic-tac-toe, also called "morpion" in France or "oxo" in Belgium, is a two-player turn-based game. The game is usually played with paper and pencil.   
+Two players compete against each other. Each of them will take a turn to place a cross or a circle at a place on the grid. The winner is the one who manages to align three identical symbols, horizontally, vertically or diagonally.  
 
 ## Job done 
   
@@ -42,9 +42,9 @@ goto(
 * Now, we use the method turn_on() to put non compliant a whole system of reachy :     
 `reachy.turn_on('r_arm')`   
 
-## Required configuration  
+## Configuration  
 
-To make the game work a particular configuration is necessary :    
+To make the game work, a particular configuration is necessary :    
 * to have at least one right arm on Reachy to move the pieces  
 * to have a head with cameras to be able to watch and analyze the playground   
 
@@ -88,14 +88,14 @@ The output must be : `Created symlink /etc/systemd/system/multi-user.target.want
 5. Restart the robot.     
 6. Wait for 30 seconds, the program will start itself and Reachy will start playing.    
 
-### L'utilisation de systemctl 
+### systemctl utilisation  
 
-Les commandes à connaitre : 
+Commannds to know : 
 * `sudo systemctl stop tictactoe_launcher.service` : it will stop the service 
 * `sudo systemctl start tictactoe_launcher.service` : it will stop the service and the game
-* `sudo systemctl status tictactoe_launcher.service` : it will give you the state of your service, if they are some mistakes  
+* `sudo systemctl status tictactoe_launcher.service` : it will give you the state of your service, for exemple if they are some mistakes  
 
-### Playing with Reachy 
+## Playing with Reachy 
 
 The demo is completely autonomous :   
 The robot will only start a game once the board is finished. It is up to you to reset the board position and to put the pieces back to their basic positions.   
@@ -105,13 +105,15 @@ The **basic position** it's :
 
 When a game is over, a new one is directly restarted. So, at the end of a game, clean the board and a new game will start.   
 
-Then, if something strange happens during a game (like someone cheating, the detection was wrong so we don't know our current state, etc.), the robot will reset the game. It will make a random move, where Reachy will knock over all the pieces on the board. It will then wait for a new game to start, i.e. when the board is cleaned up again. You can use this behavior to reset the game whenever you want.   
+Then, if something strange happens during a game (like someone cheating, the detection was wrong so we don't know our current state, etc.), the robot will reset the game. It will moove one of his antenna and knock over all the pieces on the board. It will then wait for a new game to start, when the board is cleaned up again. You can use this behavior to reset the game whenever you want.   
 
-When the board is ready, the game starts. Reachy will point to the one who starts with his arm. If he shows you, it's your turn to start the game by placing one of your pieces (cubes).    
+When the board is ready, the game start. Reachy will point to the one who starts with his arm. If he shows you, it's your turn to start the game by placing one of your pieces (cubes).    
 Once you have played, Reachy will analyze the board by lowering his head, it takes him a little time to detect everything, but once this is good, he will take his piece and play in turn.   
 And so on until someone wins.    
 
-### Adapting Reachy's game to his environment
+## Adapting Reachy's game to his environment
+
+Reachy is a robot that can perform many actions, but each robot and its environment is different: some motors may be tired, your playground may not be the same ... etc. If you want to go further and look at what is going on in the code, to change some parameters, here are the things that can be changed: 
 
 You can find 3 notebooks in the repository :     
 * Collect_training_images.ipynb  
