@@ -1,0 +1,164 @@
+{"message": "Creating a Tic Tac Toe playground.", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:00.063423"}
+{"message": "Creating the playground", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:00.063570"}
+{"message": "Setup the playground", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:00.074196"}
+{"message": "Game start", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:08.572163"}
+{"message": "Checking if the board is completly empty.", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:08.572349"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.636456"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659386"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659525"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659597"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659664"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659722"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659777"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659831"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.659885"}
+{"message": "Taille objs = 8", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.694392"}
+{"message": "Board analyzed", "board": "[[0 0 0]\n [0 0 0]\n [0 0 0]]", "img_path": "/tmp/snap.564.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:15.695425"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.270010"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281357"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281495"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281576"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281657"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281723"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281787"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281861"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281922"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.281971"}
+{"message": "Taille objs = 9", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.312773"}
+{"message": "board : [0 0 0 0 0 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.313644"}
+{"message": "taille board = (9,)", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.313734"}
+{"message": "Board analyzed", "board": "[0 0 0 0 0 0 0 0 0]", "img_path": "/tmp/snap.158.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:24.314290"}
+{"message": "Board cleaned", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:25.835518"}
+{"message": "Resetting the playground", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:25.835925"}
+{"message": "taille last_board = (9,)", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:25.836139"}
+{"message": "Coin flip", "first player": "human", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:25.836329"}
+{"message": "OOOOOOOO your turn", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:27.072958"}
+{"message": "['move']", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:27.074373"}
+{"message": "OOOOOOOOOOOOOOOOO your  turn", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:36.079713"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.136977"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149091"}
+{"message": "id : 1", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149233"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149743"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149809"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149860"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149905"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149950"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.149994"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.150044"}
+{"message": "Taille objs = 9", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.185718"}
+{"message": "board : [0 0 0 0 1 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.186111"}
+{"message": "taille board = (9,)", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.186199"}
+{"message": "Board analyzed", "board": "[0 0 0 0 1 0 0 0 0]", "img_path": "/tmp/snap.896.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:50.186764"}
+{"message": "ok = True", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:51.708940"}
+{"message": "Next turn", "next_player": "Reachy", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:07:51.709344"}
+{"message": "last board = [0 0 0 0 0 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:51.709818"}
+{"message": "current board = [0 0 0 0 1 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:51.710119"}
+{"message": "Selecting Reachy next action", "board": "[0 0 0 0 1 0 0 0 0]", "actions": [["8", 0.0], ["7", 0.0], ["6", 0.0], ["5", 0.0], ["3", 0.0], ["2", 0.0], ["1", 0.0], ["0", 0.0]], "selected action": "7", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:51.710448"}
+{"message": "JE PASSE DANS PLAY", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:51.711663"}
+{"message": "BOX_INDEX = 8", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:52.793484"}
+{"message": "JE PASSE DANS PLAY_PAWN", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.037211"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.040827"}
+{"message": "self.reachy.r_arm.r_shoulder_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.040966"}
+{"message": "self.reachy.r_arm.r_shoulder_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041088"}
+{"message": "self.reachy.r_arm.r_arm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041185"}
+{"message": "self.reachy.r_arm.r_elbow_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041272"}
+{"message": "self.reachy.r_arm.r_forearm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041426"}
+{"message": "self.reachy.r_arm.r_wrist_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041575"}
+{"message": "self.reachy.r_arm.r_wrist_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041736"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:07:54.041864"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.080962"}
+{"message": "self.reachy.r_arm.r_shoulder_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081117"}
+{"message": "self.reachy.r_arm.r_shoulder_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081268"}
+{"message": "self.reachy.r_arm.r_arm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081399"}
+{"message": "self.reachy.r_arm.r_elbow_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081515"}
+{"message": "self.reachy.r_arm.r_forearm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081636"}
+{"message": "self.reachy.r_arm.r_wrist_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081747"}
+{"message": "self.reachy.r_arm.r_wrist_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081861"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:00.081972"}
+{"message": "JE POSE MON CYLINDRE LA : 8", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:02.206367"}
+{"message": "['move']", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:02.208800"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.207966"}
+{"message": "self.reachy.r_arm.r_shoulder_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208113"}
+{"message": "self.reachy.r_arm.r_shoulder_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208225"}
+{"message": "self.reachy.r_arm.r_arm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208315"}
+{"message": "self.reachy.r_arm.r_elbow_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208395"}
+{"message": "self.reachy.r_arm.r_forearm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208466"}
+{"message": "self.reachy.r_arm.r_wrist_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208533"}
+{"message": "self.reachy.r_arm.r_wrist_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208599"}
+{"message": "self.reachy.r_arm.r_gripper", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208663"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:12.208726"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249355"}
+{"message": "self.reachy.r_arm.r_shoulder_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249469"}
+{"message": "self.reachy.r_arm.r_shoulder_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249585"}
+{"message": "self.reachy.r_arm.r_arm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249685"}
+{"message": "self.reachy.r_arm.r_elbow_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249768"}
+{"message": "self.reachy.r_arm.r_forearm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249838"}
+{"message": "self.reachy.r_arm.r_wrist_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249902"}
+{"message": "self.reachy.r_arm.r_wrist_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.249965"}
+{"message": "self.reachy.r_arm.r_gripper", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.250056"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:14.250118"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279463"}
+{"message": "self.reachy.r_arm.r_shoulder_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279582"}
+{"message": "self.reachy.r_arm.r_shoulder_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279687"}
+{"message": "self.reachy.r_arm.r_arm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279790"}
+{"message": "self.reachy.r_arm.r_elbow_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279877"}
+{"message": "self.reachy.r_arm.r_forearm_yaw", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.279949"}
+{"message": "self.reachy.r_arm.r_wrist_pitch", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.280012"}
+{"message": "self.reachy.r_arm.r_wrist_roll", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.280073"}
+{"message": "self.reachy.r_arm.r_gripper", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.280136"}
+{"message": "JE PASSE DANS GOTO", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:16.280196"}
+{"message": "Reachy playing pawn", "board-before": "[0 0 0 0 1 0 0 0 0]", "board-after": "[0 0 0 0 1 0 0 2 0]", "action": "8", "pawn_played": 2, "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:25.321068"}
+{"message": "Next turn", "next_player": "Human", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:08:25.321717"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.401990"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.431654"}
+{"message": "id : 1", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.438767"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.438910"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.438990"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.439062"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.439132"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.439201"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.439269"}
+{"message": "Taille objs = 8", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.477918"}
+{"message": "Board analyzed", "board": "[[0 0 0]\n [0 0 0]\n [0 0 0]]", "img_path": "/tmp/snap.867.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:32.478538"}
+{"message": "ok = False", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:08:34.017195"}
+{"message": "Invalid board detected", "name": "root", "level": "WARNING", "timestamp": "2021-07-23 17:08:34.017499"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.070896"}
+{"message": "id : 1", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084478"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084605"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084753"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084818"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084866"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084925"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.084970"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.085014"}
+{"message": "id : 2", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.085057"}
+{"message": "Taille objs = 9", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.127967"}
+{"message": "board : [0 2 0 0 1 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.128456"}
+{"message": "taille board = (9,)", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.128546"}
+{"message": "Board analyzed", "board": "[0 2 0 0 1 0 0 0 0]", "img_path": "/tmp/snap.457.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:41.129579"}
+{"message": "ok = True", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:08:42.689538"}
+{"message": "Reachy is playing a random idle behavior", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:42.689950"}
+{"message": "last board = [0 0 0 0 1 0 0 2 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:44.690937"}
+{"message": "current board = [0 2 0 0 1 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:44.691271"}
+{"message": "/!\\ LAAAAAAAAAAAAAAAAAAAAAAAAAAA QUELQUN TRICHE ", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:08:44.691436"}
+{"message": "Getting an image from camera", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.791437"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.809145"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.809674"}
+{"message": "id : 1", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.828615"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.828850"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.828933"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.829243"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.829331"}
+{"message": "id : 2", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.829416"}
+{"message": "id : 0", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.829479"}
+{"message": "Taille objs = 9", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.880021"}
+{"message": "board : [0 2 0 0 1 0 0 0 0]", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.880466"}
+{"message": "taille board = (9,)", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.880546"}
+{"message": "Board analyzed", "board": "[0 2 0 0 1 0 0 0 0]", "img_path": "/tmp/snap.740.jpg", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:51.881139"}
+{"message": "recheck board : [0 2 0 0 1 0 0 0 0]", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:08:53.444281"}
+{"message": "['move']", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:08:55.778690"}
+{"message": "Game end", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:09:26.490707"}
+{"message": "Game ended", "game_number": 1, "winner": null, "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:09:26.490869"}
+{"message": "Checking Reachy motors temperature", "temperatures": {"r_shoulder_pitch": "self.reachy.r_arm.r_shoulder_pitch.temperature", "r_shoulder_roll": "self.reachy.r_arm.r_shoulder_roll.temperature", "r_arm_yaw": "self.reachy.r_arm.r_arm_yaw.temperature", "r_elbow_pitch": "self.reachy.r_arm.r_elbow_pitch.temperature", "r_forearm_yaw": "self.reachy.r_arm.r_forearm_yaw.temperature", "r_wrist_pitch": "self.reachy.r_arm.r_wrist_pitch.temperature", "r_wrist_roll": "self.reachy.r_arm.r_wrist_roll.temperature", "r_gripper": "self.reachy.r_arm.r_gripper.temperature", "neck_disk_top": "self.reachy.head.neck_disk_top.temperature", "neck_disk_middle": "self.reachy.head.neck_disk_middle.temperature", "neck_disk_bottom": "self.reachy.head.neck_disk_bottom.temperature"}, "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:09:26.490977"}
+{"message": "Closing the playground", "exc": ["<class 'TypeError'>", "'>' not supported between instances of 'str' and 'int'", "File \"/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/game_launcher.py\", line 174, in <module>\n    if tictactoe_playground.need_cooldown():\n  File \"/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/tictactoe_playground.py\", line 664, in need_cooldown\n    if obj > 45 :"], "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:09:26.491109"}
+{"message": "Uncaught exception", "exc_info": "Traceback (most recent call last):\n  File \"/usr/lib/python3.8/runpy.py\", line 194, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/usr/lib/python3.8/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/game_launcher.py\", line 174, in <module>\n    if tictactoe_playground.need_cooldown():\n  File \"/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/tictactoe_playground.py\", line 664, in need_cooldown\n    if obj > 45 :\nTypeError: '>' not supported between instances of 'str' and 'int'", "name": "root", "level": "ERROR", "timestamp": "2021-07-23 17:09:26.491741"}

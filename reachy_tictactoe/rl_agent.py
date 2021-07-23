@@ -22,7 +22,7 @@ def value_actions(board, next_player=1):
 
     possibilities = sorted(possibilities.items(), key=operator.itemgetter(1))
 
-    if next_player == 1:
-        possibilities = list(reversed(possibilities))
+    #if next_player == 1:
+    #    possibilities = list(reversed(possibilities))
 
     return possibilities

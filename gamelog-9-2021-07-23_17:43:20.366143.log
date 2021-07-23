@@ -1,0 +1,3 @@
+{"message": "Creating a Tic Tac Toe playground.", "name": "root", "level": "INFO", "timestamp": "2021-07-23 17:43:20.366524"}
+{"message": "Creating the playground", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:43:20.366654"}
+{"message": "Setup the playground", "name": "reachy.tictactoe", "level": "INFO", "timestamp": "2021-07-23 17:43:20.377021"}

@@ -44,8 +44,8 @@ model_path = os.path.join(dir_path, 'models')
 #path_model_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.tflite'
 #path_label_board = '/home/reachy/dev/reachy-tictactoe/reachy_tictactoe/models/ttt-valid-board.txt'
 
-path_model = '/home/reachy/dev/tictactoe2021/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
-path_label = '/home/reachy/dev/tictactoe2021/reachy_tictactoe/models/tflite39927/label.txt'
+path_model = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
+path_label = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/label.txt'
 
 labels = read_label_file(path_label) if path_label else {}
 interpreter = make_interpreter(path_model)
@@ -122,8 +122,8 @@ def get_board_configuration(image):
     #            piece = 0
     #        board[2 - row, 2 - col] = piece
 
-    path_model = '/home/reachy/dev/tictactoe2021/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
-    path_label = '/home/reachy/dev/tictactoe2021/reachy_tictactoe/models/tflite39927/label.txt'
+    path_model = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
+    path_label = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/label.txt'
 
     #labels = read_label_file(path_label) if path_label else {}
     interpreter = make_interpreter(path_model)
@@ -140,7 +140,6 @@ def get_board_configuration(image):
     #for _ in range(args_count):
     interpreter.invoke()
     objs = detect.get_objects(interpreter, args_threshold, scale)
-    #print('%.2f ms' % (inference_time * 1000))
 
     if not objs:
         logger.info('No objects detected')
@@ -151,7 +150,7 @@ def get_board_configuration(image):
     image = image.convert('RGB')
     draw_objects(ImageDraw.Draw(image), objs, labels)
     id = "_".join([time.strftime("%y-%m-%d_%H-%M-%S")])
-    image.save(f'/home/reachy/dev/tictactoe2021/images/{id}.png')
+    image.save(f'/home/reachy/dev/reachy-tictactoe_2021/images/{id}.png')
 
     ok = False 
     logger.info(f'Taille objs = {len(objs)}')
