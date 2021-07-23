@@ -69,12 +69,12 @@ For this you need a **45 x 65 board made of wood, cork, featherboard** ... etc. 
 
 You can find STL for 3D printing these parts [here](https://github.com/ta18/tictactoe2021/blob/main/playground)             
 You will need 5 pieces of each.   
-By default, Reachy can play with big pieces, if you want to play with small pieces you have to modify some line of code. 
+By default, Reachy can play with big pieces, if you want to play with small pieces you have to modify some line on code (cf section "Adapting Reachy's game to his environment"). 
 
 ### First start-up :   
 
 1. Turn on the robot.   
-2. Clone the repository : `cd ~/dev && git clone https://github.com/ta18/reachy-tictactoe_2021 `
+2. Clone the repository : `cd ~/dev && git clone https://github.com/ta18/reachy-tictactoe_2021`
 3. Install sklearn : `pip3 install sklearn zzlog`
 4. Install the service on Reachy : 
 ```
