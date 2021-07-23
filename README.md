@@ -67,9 +67,7 @@ For this you need a **45 x 65 board made of wood, cork, featherboard** ... etc. 
 3. The size of the pieces is variable, I trained my neural network on big and small pieces. I advise the following sizes :    
 ![big piece dimension](img/dimPieces2.png)![small piece dimension](img/dimPieces.png)     
 
-You can find STL for 3D printing these parts here:          
-[Link STL cylinder](https://github.com/ta18/tictactoe2021/blob/main/playground/cylinder.stl)      
-[STL cube link](https://github.com/ta18/tictactoe2021/blob/main/playground/cube.stl)        
+You can find STL for 3D printing these parts [here](https://github.com/ta18/tictactoe2021/blob/main/playground)             
 You will need 5 pieces of each.   
 By default, Reachy can play with big pieces, if you want to play with small pieces you have to modify some line of code. 
 
