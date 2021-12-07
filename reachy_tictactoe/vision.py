@@ -170,8 +170,14 @@ def get_board_configuration(image):
 
             board[int(i/3)] = Ly_row[:,:1].flatten()
         board = board[::-1, ::-1]
+        logger.info(f'board AVANT RETOURNEEEEEEEEEEEEEE : {board}')
+        for i in range(3):
+            a = np.flip(board[i,:])
+            board[i,:] = a 
+        
+        board = board[::-1]
         board = board.flatten()
-        logger.info(f'board : {board}')
+        logger.info(f'board RETOURNEEEEEEEEEEEEEE : {board}')
         logger.info(f'taille board = {np.shape(board)}')
         
         #if board.any():
