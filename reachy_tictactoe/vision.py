@@ -92,11 +92,11 @@ def get_board_configuration(image):
     #boardEmpty = np.zeros((3, 3), dtype=np.uint8)
     
     #size for crop the image taking by the reachy's camera 
-    y1 = 370
-    y2 = 650
-    x1 = 30
-    x2 = 380
-    dim = (300,300)
+    #y1 = 370
+    #y2 = 650
+    #x1 = 30
+    #x2 = 380
+    #dim = (300,300)
 
     # try:
     #     custom_board_cases = get_board_cases(img)
@@ -122,6 +122,43 @@ def get_board_configuration(image):
     #            piece = 0
     #        board[2 - row, 2 - col] = piece
 
+
+    #TRAITEMENT DE L'IMAGE POUR CROP 
+
+    # Load image and convert to grayscale
+    gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+    blur = cv.medianBlur(gray, 5)
+
+    # filter out noise, then threshold
+    sharpen_kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
+    sharpen = cv.filter2D(blur, -1, sharpen_kernel)
+    thresh = cv.threshold(sharpen, 150, 255, cv.THRESH_BINARY_INV)[1]
+
+    # morphology treatment then find contours
+    kernel = cv.getStructuringElement(cv.MORPH_RECT, (3, 3))
+    close = cv.morphologyEx(thresh, cv.MORPH_CLOSE, kernel, iterations=2)
+    cnts = cv.findContours(close, cv.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+
+    # find the largest contour
+    max_cnt = None
+    max_area = 0
+    maximum = 100000
+    for c in cnts:
+        area = cv.contourArea(c)
+        if max_area < area < maximum:
+            max_area = area
+            max_cnt = c
+
+    # crop the largest contour
+    x, y, w, h = cv.boundingRect(max_cnt)
+    x = x - 10 if x - 10 > 0 else x
+    y = y - 10 if y - 10 > 0 else y
+    h = h + 10 if h + 10 < image.shape[0] else h
+    w = w + 10 if w + 10 < image.shape[1] else w
+    ROI = image[y:y + h, x:x + w]
+
+    #PASSAGE DANS LE RESEAU DE NEURONES 
     path_model = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/output_tflite_graph_edgetpu.tflite'
     path_label = '/home/reachy/dev/reachy-tictactoe_2021/reachy_tictactoe/models/tflite39927/label.txt'
 
@@ -129,8 +166,8 @@ def get_board_configuration(image):
     interpreter = make_interpreter(path_model)
     interpreter.allocate_tensors()
 
-    image = image[y1:y2, x1:x2]
-    image = cv.resize(image, dim)
+    #image = image[y1:y2, x1:x2]
+    #image = cv.resize(image, dim)
     image = Image.fromarray(image)
 
     _, scale = common.set_resized_input(interpreter, image.size, lambda size: image.resize(size, Image.ANTIALIAS))
